@@ -15,7 +15,7 @@ $config = [
     'components' => [
         'request' => [
             // !!! insert a secret key in the following (if it is empty) - this is required by cookie validation
-            'cookieValidationKey' => 'JN_UAfL8QQiqYpCf86RnSvW1nx_bnNcZ',
+            'cookieValidationKey' => $_ENV['COOKIE_VALIDATION_KEY'] ?? 'dev-key-change-in-production',
         ],
         'authManager' => [
             'class' => 'yii\rbac\DbManager',
