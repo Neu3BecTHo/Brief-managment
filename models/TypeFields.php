@@ -61,5 +61,4 @@ class TypeFields extends ActiveRecord
     {
         return $this->hasMany(BriefQuestions::class, ['type_field_id' => 'id']);
     }
-
 }

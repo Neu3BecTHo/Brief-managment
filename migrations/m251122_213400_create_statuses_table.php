@@ -14,7 +14,7 @@ class m251122_213400_create_statuses_table extends Migration
     {
         $this->createTable('{{%statuses}}', [
             'id' => $this->primaryKey(2),
-            
+
             'title' => $this->string(50)->notNull()->unique(),
 
             'created_at' => $this->timestamp()->notNull()->defaultExpression('CURRENT_TIMESTAMP'),

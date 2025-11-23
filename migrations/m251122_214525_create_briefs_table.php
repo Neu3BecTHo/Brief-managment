@@ -19,7 +19,7 @@ class m251122_214525_create_briefs_table extends Migration
 
             'title' => $this->string(50)->notNull()->unique(),
             'description' => $this->text()->notNull(),
-            
+
             'created_at' => $this->timestamp()->notNull()->defaultExpression('CURRENT_TIMESTAMP'),
             'updated_at' => $this->timestamp()->notNull()->defaultExpression('CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP'),
         ]);

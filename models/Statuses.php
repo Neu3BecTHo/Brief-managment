@@ -61,5 +61,4 @@ class Statuses extends ActiveRecord
     {
         return $this->hasMany(Briefs::class, ['status_id' => 'id']);
     }
-
 }

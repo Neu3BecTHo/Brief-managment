@@ -83,12 +83,12 @@ class SeedController extends Controller
                 try {
                     $authManager = Yii::$app->authManager;
                     $adminRole = $authManager->getRole('admin');
-                    
+
                     if (!$adminRole) {
                         Console::error('Роль "admin" не найдена. Сначала выполните php yii seed/init');
                         return;
                     }
-                    
+
                     $authManager->assign($adminRole, $user->id);
                     Console::output('Администратор ' . $user->username . ' создан.');
                     Console::output('Пароль: admin');

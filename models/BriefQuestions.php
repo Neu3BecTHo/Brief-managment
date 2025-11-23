@@ -89,5 +89,4 @@ class BriefQuestions extends ActiveRecord
     {
         return $this->hasOne(TypeFields::class, ['id' => 'type_field_id']);
     }
-
 }

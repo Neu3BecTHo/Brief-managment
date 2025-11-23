@@ -14,7 +14,7 @@ class m251122_213500_create_type_fields_table extends Migration
     {
         $this->createTable('{{%type_fields}}', [
             'id' => $this->primaryKey(2),
-            
+
             'title' => $this->string(50)->notNull()->unique(),
 
             'created_at' => $this->timestamp()->notNull()->defaultExpression('CURRENT_TIMESTAMP'),
