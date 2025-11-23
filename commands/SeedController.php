@@ -13,6 +13,7 @@ use app\models\User;
 use yii\console\Controller;
 use yii\helpers\Console;
 use Exception;
+use Faker\Factory;
 
 /**
  * This command echoes the first argument that you have entered.
@@ -37,19 +38,16 @@ class SeedController extends Controller
             if (!$user = $authManager->createRole('user')) {
                 Console::error('Роль "Пользователь" не создана.');
             }
-            $user->name = 'Пользователь';
             $user->description = 'Пользователь с базовыми правами.';
 
             if (!$manager = $authManager->createRole('manager')) {
                 Console::error('Роль "Менеджер" не создана.');
             }
-            $manager->name = 'Менеджер';
             $manager->description = 'Менеджер с правами на рассмотрение брифов.';
 
             if (!$admin = $authManager->createRole('admin')) {
                 Console::error('Роль "Администратор" не создана.');
             }
-            $admin->name = 'Администратор';
             $admin->description = 'Администратор с правами на все.';
 
             $authManager->add($user);
@@ -61,22 +59,60 @@ class SeedController extends Controller
 
             Console::output('Роли созданы.');
         } catch (Exception $e) {
-            Console::error($e->getMessage());
+            Console::error('Ошибка при создании ролей: ' . $e->getMessage());
         }
     }
 
     public function actionCreateAdmin()
     {
         $user = User::findOne(['username' => 'admin']);
+        $faker = Factory::create('ru_RU');
+
         if (!$user) {
             $user = new User();
             $user->username = 'admin';
+            $user->password = 'admin';
             $user->email = 'admin@admin.com';
-            $user->setPassword('admin');
-            $user->generateAuthKey();
-            $user->generateAccessToken();
-            $user->save(false);
-            Console::output('Администратор создан.');
+            $user->phone = $faker->phoneNumber;
+
+            $user->first_name = $faker->firstName;
+            $user->last_name = $faker->lastName;
+            $user->patronymic = $faker->sentence(1);
+
+            if ($user->save()) {
+                try {
+                    $authManager = Yii::$app->authManager;
+                    $adminRole = $authManager->getRole('admin');
+                    
+                    if (!$adminRole) {
+                        Console::error('Роль "admin" не найдена. Сначала выполните php yii seed/init');
+                        return;
+                    }
+                    
+                    $authManager->assign($adminRole, $user->id);
+                    Console::output('Администратор ' . $user->username . ' создан.');
+                    Console::output('Пароль: admin');
+                } catch (Exception $e) {
+                    Console::error($e->getMessage());
+                }
+            } else {
+                $errorMessages = [];
+                foreach ($user->errors as $field => $errors) {
+                    $errorMessages = array_merge($errorMessages, $errors);
+                }
+                Console::error('Администратор ' . $user->username . ' не создан из-за ошибок: ' . implode(', ', $errorMessages));
+            }
+        } else {
+            Console::output('Администратор ' . $user->username . ' уже существует.');
+        }
+    }
+
+    public function actionCheckRoles()
+    {
+        $authManager = Yii::$app->authManager;
+        $roles = $authManager->getRoles();
+        foreach ($roles as $role) {
+            Console::output($role->name);
         }
     }
 }
