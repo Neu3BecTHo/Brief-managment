@@ -29,9 +29,6 @@ use yii\web\IdentityInterface;
 
 class User extends ActiveRecord implements IdentityInterface
 {
-    public $authKey;
-    public $accessToken;
-
     // Использование таблицы из БД
     public static function tableName()
     {
@@ -47,7 +44,7 @@ class User extends ActiveRecord implements IdentityInterface
     {
         return [
             [['patronymic'], 'default', 'value' => null],
-            [['username', 'password', 'email', 'phone', 'first_name', 'last_name', 'auth_key', 'access_token'], 'required'],
+            [['username', 'password', 'email', 'phone', 'first_name', 'last_name'], 'required'],
             [['created_at', 'updated_at'], 'safe'],
             [['username', 'first_name', 'last_name', 'patronymic'], 'string', 'max' => 50],
             [['password'], 'string', 'max' => 255],
@@ -109,17 +106,17 @@ class User extends ActiveRecord implements IdentityInterface
 
     public function generateAccessToken()
     {
-        $this->accessToken = Yii::$app->security->generateRandomString();
+        $this->access_token = Yii::$app->security->generateRandomString();
     }
 
     public function getAccessToken()
     {
-        return $this->accessToken;
+        return $this->access_token;
     }
 
     public function validateAccessToken($token)
     {
-        return $this->accessToken === $token;
+        return $this->access_token === $token;
     }
 
     /**
@@ -127,14 +124,14 @@ class User extends ActiveRecord implements IdentityInterface
      */
     public static function findIdentityByAccessToken($token, $type = null)
     {
-        return static::findOne(['accessToken' => $token]);
+        return static::findOne(['access_token' => $token]);
     }
 
     // Auth-токен
 
     public function generateAuthKey()
     {
-        $this->authKey = Yii::$app->security->generateRandomString();
+        $this->auth_key = Yii::$app->security->generateRandomString();
     }
 
     /**
@@ -142,7 +139,7 @@ class User extends ActiveRecord implements IdentityInterface
      */
     public function getAuthKey()
     {
-        return $this->authKey;
+        return $this->auth_key;
     }
 
     /**
@@ -150,7 +147,7 @@ class User extends ActiveRecord implements IdentityInterface
      */
     public function validateAuthKey($authKey)
     {
-        return $this->authKey === $authKey;
+        return $this->auth_key === $authKey;
     }
 
     // Пароль
@@ -198,6 +195,7 @@ class User extends ActiveRecord implements IdentityInterface
     public function beforeSave($insert)
     {
         if ($this->isNewRecord) {
+            $this->setPassword($this->password);
             $this->generateAuthKey();
             $this->generateAccessToken();
         }

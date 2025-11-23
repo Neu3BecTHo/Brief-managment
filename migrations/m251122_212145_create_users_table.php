@@ -24,8 +24,8 @@ class m251122_212145_create_users_table extends Migration
             'last_name' => $this->string(50)->notNull(),
             'patronymic' => $this->string(50),
 
-            'auth_key' => $this->string(32)->notNull(),
-            'access_token' => $this->string(32)->notNull(),
+            'auth_key' => $this->string(32),
+            'access_token' => $this->string(32),
 
             'created_at' => $this->timestamp()->notNull()->defaultExpression('CURRENT_TIMESTAMP'),
             'updated_at' => $this->timestamp()->notNull()->defaultExpression('CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP'),
