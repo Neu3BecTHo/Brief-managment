@@ -29,7 +29,9 @@
         "codeception/module-asserts": "^3.0 || ^1.1",
         "codeception/module-yii2": "^1.1",
         "codeception/module-filesystem": "^3.0 || ^2.0 || ^1.1",
-        "codeception/verify": "^3.0 || ^2.2"
+        "codeception/verify": "^3.0 || ^2.2",
+        "phpstan/phpstan": "2.1.x-dev",
+        "squizlabs/php_codesniffer": "4.x-dev"
     },
     "config": {
         "allow-plugins": {
