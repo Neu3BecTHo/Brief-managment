@@ -25,7 +25,7 @@ jobs:
         run: ./vendor/bin/phpcs --standard=PSR12 ./
 
       - name: Auto-fix code style
-        run: ./vendor/bin/phpcbf --standart=PSR12 ./
+        run: ./vendor/bin/phpcbf --standard=PSR12 ./
         if: always()
 
       - name: Commit and push fixed code
