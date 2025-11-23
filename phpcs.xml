@@ -2,7 +2,8 @@
 <ruleset name="PSR12">
     <description>PSR12</description>
     <rule ref="PSR12"/>
-    
+
+    <exclude name="Generic.Files.LineLength" />
     <exclude-pattern>*/vendor/*</exclude-pattern>
     <exclude-pattern>*/runtime/*</exclude-pattern>
     <exclude-pattern>*/web/*</exclude-pattern>

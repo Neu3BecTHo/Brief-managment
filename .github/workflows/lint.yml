@@ -26,6 +26,7 @@ jobs:
 
       - name: Auto-fix code style
         run: ./vendor/bin/phpcbf --standard=PSR12 --ignore=vendor,runtime,web ./
+        continue-on-error: true
         if: always()
 
       - name: Commit and push fixed code
