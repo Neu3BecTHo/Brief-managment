@@ -22,7 +22,7 @@ jobs:
         run: composer install --prefer-dist --no-progress
 
       - name: Run PHP CodeSniffer
-        run: ./vendor/bin/phpcs --standard=PSR12 ./controllers ./models ./commands ./widgets ./views ./mail
+        run: ./vendor/bin/phpcs --standard=PSR12 --warning-severity=1 ./controllers ./models ./commands ./widgets ./views ./mail
       - name: Auto-fix code style
         run: ./vendor/bin/phpcbf --standard=PSR12 --ignore=vendor,runtime,web ./
         continue-on-error: true
