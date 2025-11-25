@@ -100,7 +100,7 @@ class SeedController extends Controller
                 foreach ($user->errors as $field => $errors) {
                     $errorMessages = array_merge($errorMessages, $errors);
                 }
-                Console::error('Администратор ' . $user->username . ' не создан из-за ошибок: ' . 
+                Console::error('Администратор ' . $user->username . ' не создан из-за ошибок: ' .
                 implode(', ', $errorMessages));
             }
         } else {
