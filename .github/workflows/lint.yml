@@ -35,6 +35,7 @@ jobs:
             git config --local user.name "GitHub Action"
             git add -A
             git commit -m "Исправленный код при помощи phpcbf" || true
+            git pull --no-edit origin ${{ github.head_ref }}
             git push origin HEAD:${{ github.head_ref }}
         if: always()
         
