@@ -21,7 +21,7 @@ jobs:
           php-version: '8.5'
 
       - name: Install dependencies
-        run: composer install --prefer-dist --no-progress
+        run: composer update
 
       - name: Run PHP CodeSniffer
         run: ./vendor/bin/phpcs --standard=PSR12 ./
@@ -32,4 +32,4 @@ jobs:
         if: always()
         
       - name: Run PHPStan
-        run: ./vendor/bin/phpstan analyse
+        run: ./vendor/bin/phpstan analyse --autoload-file=vendor/yiisoft/yii2/Yii.php
