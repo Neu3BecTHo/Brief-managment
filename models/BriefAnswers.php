@@ -39,8 +39,12 @@ class BriefAnswers extends ActiveRecord
             [['brief_question_id', 'user_id'], 'integer'],
             [['answer'], 'string'],
             [['created_at', 'updated_at'], 'safe'],
-            [['brief_question_id'], 'exist', 'skipOnError' => true, 'targetClass' => BriefQuestions::class, 'targetAttribute' => ['brief_question_id' => 'id']],
-            [['user_id'], 'exist', 'skipOnError' => true, 'targetClass' => User::class, 'targetAttribute' => ['user_id' => 'id']],
+            [['brief_question_id'], 'exist', 'skipOnError' => true,
+            'targetClass' => BriefQuestions::class,
+            'targetAttribute' => ['brief_question_id' => 'id']],
+            [['user_id'], 'exist', 'skipOnError' => true,
+            'targetClass' => User::class,
+            'targetAttribute' => ['user_id' => 'id']],
         ];
     }
 

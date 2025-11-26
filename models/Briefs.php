@@ -43,8 +43,12 @@ class Briefs extends ActiveRecord
             [['created_at', 'updated_at'], 'safe'],
             [['title'], 'string', 'max' => 50],
             [['title'], 'unique'],
-            [['status_id'], 'exist', 'skipOnError' => true, 'targetClass' => Statuses::class, 'targetAttribute' => ['status_id' => 'id']],
-            [['user_id'], 'exist', 'skipOnError' => true, 'targetClass' => User::class, 'targetAttribute' => ['user_id' => 'id']],
+            [['status_id'], 'exist', 'skipOnError' => true,
+            'targetClass' => Statuses::class,
+            'targetAttribute' => ['status_id' => 'id']],
+            [['user_id'], 'exist', 'skipOnError' => true,
+            'targetClass' => User::class,
+            'targetAttribute' => ['user_id' => 'id']],
         ];
     }
 

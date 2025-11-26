@@ -10,3 +10,7 @@ parameters:
         - runtime
         - tests
         - web
+    bootstrapFiles:
+        - phpstan-bootstrap.php
+    ignoreErrors:
+        - '#Ternary operator condition is always false#'

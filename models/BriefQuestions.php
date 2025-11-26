@@ -40,8 +40,12 @@ class BriefQuestions extends ActiveRecord
             [['brief_id', 'type_field_id'], 'integer'],
             [['created_at', 'updated_at'], 'safe'],
             [['question'], 'string', 'max' => 255],
-            [['brief_id'], 'exist', 'skipOnError' => true, 'targetClass' => Briefs::class, 'targetAttribute' => ['brief_id' => 'id']],
-            [['type_field_id'], 'exist', 'skipOnError' => true, 'targetClass' => TypeFields::class, 'targetAttribute' => ['type_field_id' => 'id']],
+            [['brief_id'], 'exist', 'skipOnError' => true,
+            'targetClass' => Briefs::class,
+            'targetAttribute' => ['brief_id' => 'id']],
+            [['type_field_id'], 'exist', 'skipOnError' => true,
+            'targetClass' => TypeFields::class,
+            'targetAttribute' => ['type_field_id' => 'id']],
         ];
     }
 
