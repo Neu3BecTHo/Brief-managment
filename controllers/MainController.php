@@ -112,4 +112,14 @@ class MainController extends Controller
 
         return $this->goHome();
     }
+
+    /**
+     * About page.
+     *
+     * @return string
+     */
+    public function actionAbout()
+    {
+        return $this->render('about');
+    }
 }
