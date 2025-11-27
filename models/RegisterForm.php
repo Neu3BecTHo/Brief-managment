@@ -58,7 +58,8 @@ class RegisterForm extends Model
                         return $user;
                     }
                 } else {
-                    Yii::$app->session->setFlash('error', 'Пользователь не зарегистрирован: ' . implode(' ', $user->getFirstErrors()));
+                    Yii::$app->session->setFlash('error', 'Пользователь не зарегистрирован: ' .
+                    implode(' ', $user->getFirstErrors()));
                 }
                 return false;
             } catch (\Exception $e) {
