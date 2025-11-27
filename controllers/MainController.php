@@ -8,6 +8,7 @@ use yii\web\Controller;
 use yii\web\Response;
 use yii\filters\VerbFilter;
 use app\models\LoginForm;
+use app\models\RegisterForm;
 
 class MainController extends Controller
 {
@@ -61,6 +62,18 @@ class MainController extends Controller
     public function actionIndex()
     {
         return $this->render('index');
+    }
+
+    public function actionRegister()
+    {
+        $model = new RegisterForm();
+        if ($user = $model->register()) {
+            return $user->login();
+        }
+
+        return $this->render('register', [
+            'model' => $model,
+        ]);
     }
 
     /**
