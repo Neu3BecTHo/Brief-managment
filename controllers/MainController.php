@@ -8,6 +8,7 @@ use yii\web\Controller;
 use yii\web\Response;
 use yii\filters\VerbFilter;
 use app\models\LoginForm;
+use app\models\RegisterForm;
 
 class MainController extends Controller
 {
@@ -63,6 +64,19 @@ class MainController extends Controller
         return $this->render('index');
     }
 
+    public function actionRegister()
+    {
+        $model = new RegisterForm();
+        if ($model->load(Yii::$app->request->post()) && $user = $model->register()) {
+            Yii::$app->user->login($user);
+            return $this->redirect(['main/index']);
+        }
+
+        return $this->render('register', [
+            'model' => $model,
+        ]);
+    }
+
     /**
      * Login action.
      *
@@ -76,6 +90,7 @@ class MainController extends Controller
 
         $model = new LoginForm();
         if ($model->load(Yii::$app->request->post()) && $model->login()) {
+            Yii::$app->session->setFlash('success', 'Вы успешно авторизовались.');
             return $this->goBack();
         }
 
@@ -93,6 +108,7 @@ class MainController extends Controller
     public function actionLogout()
     {
         Yii::$app->user->logout();
+        Yii::$app->session->setFlash('success', 'Вы вышли из системы.');
 
         return $this->goHome();
     }
