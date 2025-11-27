@@ -105,6 +105,51 @@ class SeedController extends Controller
         }
     }
 
+    public function actionCreateManager()
+    {
+        $user = User::findOne(['username' => 'manager']);
+        $faker = Factory::create('ru_RU');
+
+        if (!$user) {
+            $user = new User();
+            $user->username = 'manager';
+            $user->password = 'manager';
+            $user->email = 'manager@manager.com';
+            $user->phone = $faker->phoneNumber;
+
+            $user->first_name = $faker->firstName;
+            $user->last_name = $faker->lastName;
+            $user->patronymic = $faker->sentence(1);
+
+            if ($user->save()) {
+                try {
+                    $authManager = Yii::$app->authManager;
+                    $managerRole = $authManager->getRole('manager');
+
+                    if (!$managerRole) {
+                        Console::error('Роль "manager" не найдена. Сначала выполните php yii seed/init');
+                        return;
+                    }
+
+                    $authManager->assign($managerRole, $user->id);
+                    Console::output('Менеджер ' . $user->username . ' создан.');
+                    Console::output('Пароль: manager');
+                } catch (Exception $e) {
+                    Console::error($e->getMessage());
+                }
+            } else {
+                $errorMessages = [];
+                foreach ($user->errors as $field => $errors) {
+                    $errorMessages = array_merge($errorMessages, $errors);
+                }
+                Console::error('Менеджер ' . $user->username . ' не создан из-за ошибок: ' .
+                implode(', ', $errorMessages));
+            }
+        } else {
+            Console::output('Менеджер ' . $user->username . ' уже существует.');
+        }
+    }
+
     public function actionCheckRoles()
     {
         $authManager = Yii::$app->authManager;
