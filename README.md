@@ -94,9 +94,9 @@ php yii serve
 
 ## CI/CD
 
-- [ ] Добавление GitHub Actions workflow
-- [ ] Добавление PHP CodeSniffer и PHPStan
-- [ ] Автоматическое исправление кода и внесение его в репозиторий (при возможности)
+- Добавление GitHub Actions workflow
+- Добавление PHP CodeSniffer и PHPStan
+- Автоматическое исправление стиля кода при поиощи PHPCodeSniffer
 
 ## Безопасность
 
