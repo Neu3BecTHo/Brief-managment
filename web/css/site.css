@@ -53,6 +53,12 @@ body {
     grid-template-rows: auto 1fr auto;
 }
 
+/* Main */
+
+main {
+    padding: 1rem;
+}
+
 /* Dropdown меню */
 .dropdown-menu {
     border: 1px solid var(--gray-200);
