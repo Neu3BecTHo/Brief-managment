@@ -53,6 +53,7 @@ $config = [
             'showScriptName' => false,
             'rules' => [
                 '' => 'main/index',
+                'briefes' => 'brief/available',
             ],
         ],
     ],
