@@ -2035,12 +2035,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/Behat/Gherkin.git",
-                "reference": "3856cd4b6c62f37ecf00b593fe11daa629ff7fca"
+                "reference": "d9957c77fe70bae12201a8f90ae349d6b2dceb7f"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/Behat/Gherkin/zipball/3856cd4b6c62f37ecf00b593fe11daa629ff7fca",
-                "reference": "3856cd4b6c62f37ecf00b593fe11daa629ff7fca",
+                "url": "https://api.github.com/repos/Behat/Gherkin/zipball/d9957c77fe70bae12201a8f90ae349d6b2dceb7f",
+                "reference": "d9957c77fe70bae12201a8f90ae349d6b2dceb7f",
                 "shasum": ""
             },
             "require": {
@@ -2097,7 +2097,7 @@
                 "issues": "https://github.com/Behat/Gherkin/issues",
                 "source": "https://github.com/Behat/Gherkin/tree/master"
             },
-            "time": "2025-11-20T07:23:04+00:00"
+            "time": "2025-11-26T09:15:19+00:00"
         },
         {
             "name": "codeception/codeception",
@@ -2105,12 +2105,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/Codeception/Codeception.git",
-                "reference": "29ed099479af5905b48d62b0d0ab8a683e4a5d12"
+                "reference": "91ee927fac02f136f417ed585461ac1a0a6c8ac6"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/Codeception/Codeception/zipball/29ed099479af5905b48d62b0d0ab8a683e4a5d12",
-                "reference": "29ed099479af5905b48d62b0d0ab8a683e4a5d12",
+                "url": "https://api.github.com/repos/Codeception/Codeception/zipball/91ee927fac02f136f417ed585461ac1a0a6c8ac6",
+                "reference": "91ee927fac02f136f417ed585461ac1a0a6c8ac6",
                 "shasum": ""
             },
             "require": {
@@ -2225,7 +2225,7 @@
                     "type": "open_collective"
                 }
             ],
-            "time": "2025-11-21T16:05:18+00:00"
+            "time": "2025-11-27T21:06:33+00:00"
         },
         {
             "name": "codeception/lib-asserts",
@@ -2342,16 +2342,16 @@
         },
         {
             "name": "codeception/lib-web",
-            "version": "2.0.0",
+            "version": "2.0.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/Codeception/lib-web.git",
-                "reference": "f901da66668ddaeb8bb9dd2b1e8b19dd83e96b99"
+                "reference": "bbec12e789c3b810ec8cb86e5f46b5bfd673c441"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/Codeception/lib-web/zipball/f901da66668ddaeb8bb9dd2b1e8b19dd83e96b99",
-                "reference": "f901da66668ddaeb8bb9dd2b1e8b19dd83e96b99",
+                "url": "https://api.github.com/repos/Codeception/lib-web/zipball/bbec12e789c3b810ec8cb86e5f46b5bfd673c441",
+                "reference": "bbec12e789c3b810ec8cb86e5f46b5bfd673c441",
                 "shasum": ""
             },
             "require": {
@@ -2359,7 +2359,7 @@
                 "guzzlehttp/psr7": "^2.0",
                 "php": "^8.2",
                 "phpunit/phpunit": "^11.5 | ^12",
-                "symfony/css-selector": ">=4.4.24 <8.0"
+                "symfony/css-selector": ">=4.4.24 <9.0"
             },
             "conflict": {
                 "codeception/codeception": "<5.0.0-alpha3"
@@ -2389,9 +2389,9 @@
             ],
             "support": {
                 "issues": "https://github.com/Codeception/lib-web/issues",
-                "source": "https://github.com/Codeception/lib-web/tree/2.0.0"
+                "source": "https://github.com/Codeception/lib-web/tree/2.0.1"
             },
-            "time": "2025-09-04T11:39:06+00:00"
+            "time": "2025-11-27T21:09:09+00:00"
         },
         {
             "name": "codeception/module-asserts",
@@ -3026,12 +3026,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/phar-io/manifest.git",
-                "reference": "65f90285728eae4eae313b8b6ba11b2f5436038e"
+                "reference": "c581d4941e196459bf76c945a8ca922963a66708"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/phar-io/manifest/zipball/65f90285728eae4eae313b8b6ba11b2f5436038e",
-                "reference": "65f90285728eae4eae313b8b6ba11b2f5436038e",
+                "url": "https://api.github.com/repos/phar-io/manifest/zipball/c581d4941e196459bf76c945a8ca922963a66708",
+                "reference": "c581d4941e196459bf76c945a8ca922963a66708",
                 "shasum": ""
             },
             "require": {
@@ -3086,7 +3086,7 @@
                     "type": "github"
                 }
             ],
-            "time": "2025-07-05T08:48:25+00:00"
+            "time": "2025-11-27T15:23:09+00:00"
         },
         {
             "name": "phar-io/version",
@@ -3185,8 +3185,8 @@
             "version": "2.1.x-dev",
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/phpstan/phpstan/zipball/88f974a6d710ef7de1f5b2053327acf903576b15",
-                "reference": "88f974a6d710ef7de1f5b2053327acf903576b15",
+                "url": "https://api.github.com/repos/phpstan/phpstan/zipball/f5628342a5610aeecaf9b1374e32751b2146d16c",
+                "reference": "f5628342a5610aeecaf9b1374e32751b2146d16c",
                 "shasum": ""
             },
             "require": {
@@ -3232,7 +3232,7 @@
                     "type": "github"
                 }
             ],
-            "time": "2025-11-22T21:50:04+00:00"
+            "time": "2025-11-27T15:52:12+00:00"
         },
         {
             "name": "phpunit/php-code-coverage",
@@ -3240,12 +3240,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/sebastianbergmann/php-code-coverage.git",
-                "reference": "c1a9f74abe86a1a45f92264bf4604916045b30f9"
+                "reference": "1d846f1581ae5a55e992c51ba114d0e502f3058c"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/sebastianbergmann/php-code-coverage/zipball/c1a9f74abe86a1a45f92264bf4604916045b30f9",
-                "reference": "c1a9f74abe86a1a45f92264bf4604916045b30f9",
+                "url": "https://api.github.com/repos/sebastianbergmann/php-code-coverage/zipball/1d846f1581ae5a55e992c51ba114d0e502f3058c",
+                "reference": "1d846f1581ae5a55e992c51ba114d0e502f3058c",
                 "shasum": ""
             },
             "require": {
@@ -3273,7 +3273,7 @@
             "type": "library",
             "extra": {
                 "branch-alias": {
-                    "dev-main": "12.4.x-dev"
+                    "dev-main": "12.5.x-dev"
                 }
             },
             "autoload": {
@@ -3322,7 +3322,7 @@
                     "type": "tidelift"
                 }
             ],
-            "time": "2025-11-21T07:23:38+00:00"
+            "time": "2025-11-28T18:25:41+00:00"
         },
         {
             "name": "phpunit/php-file-iterator",
@@ -3554,12 +3554,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/sebastianbergmann/php-timer.git",
-                "reference": "6e392b79f23b813fa3ebdc33f3de8e8f68820353"
+                "reference": "b338ea7568ab01538d8c30ab1594137966aa3747"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/sebastianbergmann/php-timer/zipball/6e392b79f23b813fa3ebdc33f3de8e8f68820353",
-                "reference": "6e392b79f23b813fa3ebdc33f3de8e8f68820353",
+                "url": "https://api.github.com/repos/sebastianbergmann/php-timer/zipball/b338ea7568ab01538d8c30ab1594137966aa3747",
+                "reference": "b338ea7568ab01538d8c30ab1594137966aa3747",
                 "shasum": ""
             },
             "require": {
@@ -3619,7 +3619,7 @@
                     "type": "tidelift"
                 }
             ],
-            "time": "2025-09-26T12:07:45+00:00"
+            "time": "2025-11-25T08:00:07+00:00"
         },
         {
             "name": "phpunit/phpunit",
@@ -3627,12 +3627,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/sebastianbergmann/phpunit.git",
-                "reference": "1792cb655881801e68788b954ca7a3521c3fe8c5"
+                "reference": "2261c6abcda2614c8f65f5a45923b68fbb9d210d"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/sebastianbergmann/phpunit/zipball/1792cb655881801e68788b954ca7a3521c3fe8c5",
-                "reference": "1792cb655881801e68788b954ca7a3521c3fe8c5",
+                "url": "https://api.github.com/repos/sebastianbergmann/phpunit/zipball/2261c6abcda2614c8f65f5a45923b68fbb9d210d",
+                "reference": "2261c6abcda2614c8f65f5a45923b68fbb9d210d",
                 "shasum": ""
             },
             "require": {
@@ -3646,7 +3646,7 @@
                 "phar-io/manifest": "^2.0.4",
                 "phar-io/version": "^3.2.1",
                 "php": ">=8.3",
-                "phpunit/php-code-coverage": "^12.4.0",
+                "phpunit/php-code-coverage": "^12.5.0",
                 "phpunit/php-file-iterator": "^6.0.0",
                 "phpunit/php-invoker": "^6.0.0",
                 "phpunit/php-text-template": "^5.0.0",
@@ -3724,7 +3724,7 @@
                     "type": "tidelift"
                 }
             ],
-            "time": "2025-11-21T13:13:22+00:00"
+            "time": "2025-11-28T18:26:59+00:00"
         },
         {
             "name": "psr/http-factory",
@@ -3841,12 +3841,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/bobthecow/psysh.git",
-                "reference": "12ece1d0367ff89b8bb22d862cfcf9ea7b27771e"
+                "reference": "38953bc71491c838fcb6ebcbdc41ab7483cd549c"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/bobthecow/psysh/zipball/12ece1d0367ff89b8bb22d862cfcf9ea7b27771e",
-                "reference": "12ece1d0367ff89b8bb22d862cfcf9ea7b27771e",
+                "url": "https://api.github.com/repos/bobthecow/psysh/zipball/38953bc71491c838fcb6ebcbdc41ab7483cd549c",
+                "reference": "38953bc71491c838fcb6ebcbdc41ab7483cd549c",
                 "shasum": ""
             },
             "require": {
@@ -3911,9 +3911,9 @@
             ],
             "support": {
                 "issues": "https://github.com/bobthecow/psysh/issues",
-                "source": "https://github.com/bobthecow/psysh/tree/main"
+                "source": "https://github.com/bobthecow/psysh/tree/v0.12.15"
             },
-            "time": "2025-11-02T04:12:51+00:00"
+            "time": "2025-11-28T00:00:14+00:00"
         },
         {
             "name": "ralouphie/getallheaders",
@@ -4947,12 +4947,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/PHPCSStandards/PHP_CodeSniffer.git",
-                "reference": "b24645570ef73d320d22ee04a5798ba319f755ed"
+                "reference": "c4adbbc16dc75a090040901f305657c3a675a8f3"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/PHPCSStandards/PHP_CodeSniffer/zipball/b24645570ef73d320d22ee04a5798ba319f755ed",
-                "reference": "b24645570ef73d320d22ee04a5798ba319f755ed",
+                "url": "https://api.github.com/repos/PHPCSStandards/PHP_CodeSniffer/zipball/c4adbbc16dc75a090040901f305657c3a675a8f3",
+                "reference": "c4adbbc16dc75a090040901f305657c3a675a8f3",
                 "shasum": ""
             },
             "require": {
@@ -5019,7 +5019,7 @@
                     "type": "thanks_dev"
                 }
             ],
-            "time": "2025-11-18T05:46:24+00:00"
+            "time": "2025-11-24T08:57:09+00:00"
         },
         {
             "name": "staabm/side-effects-detector",
@@ -5152,12 +5152,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/console.git",
-                "reference": "4155b9ffec268d2afbaa094dc9b7d039aa3babb9"
+                "reference": "0bc0f45254b99c58d45a8fbf9fb955d46cbd1bb8"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/console/zipball/4155b9ffec268d2afbaa094dc9b7d039aa3babb9",
-                "reference": "4155b9ffec268d2afbaa094dc9b7d039aa3babb9",
+                "url": "https://api.github.com/repos/symfony/console/zipball/0bc0f45254b99c58d45a8fbf9fb955d46cbd1bb8",
+                "reference": "0bc0f45254b99c58d45a8fbf9fb955d46cbd1bb8",
                 "shasum": ""
             },
             "require": {
@@ -5242,7 +5242,7 @@
                     "type": "tidelift"
                 }
             ],
-            "time": "2025-11-21T13:17:08+00:00"
+            "time": "2025-11-27T13:27:24+00:00"
         },
         {
             "name": "symfony/css-selector",
