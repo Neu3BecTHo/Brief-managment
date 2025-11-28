@@ -48,6 +48,21 @@ $this->registerLinkTag(['rel' => 'icon', 'type' => 'image/x-icon', 'href' => Yii
                     <li class="nav-item">
                         <a class="nav-link" href="<?= Yii::$app->urlManager->createUrl(['main/about']) ?>">О проекте</a>
                     </li>
+                    <?php if (!Yii::$app->user->isGuest) : ?>
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" id="briefesDropdown"
+                            role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                Брифы
+                            </a>
+                            <ul class="dropdown-menu" aria-labelledby="briefesDropdown">
+                                <li>
+                                    <a class="dropdown-item" href="<?= Yii::$app->urlManager->createUrl(['brief/available']) ?>">
+                                        Доступные брифы
+                                    </a>
+                                </li>
+                            .</ul>
+                        </li>
+                    <?php endif; ?>
                     <?php if (Yii::$app->user->isGuest) : ?>
                         <li class="nav-item">
                             <a class="nav-link" href="<?= Yii::$app->urlManager->createUrl(['main/login']) ?>">Вход</a>
@@ -67,7 +82,7 @@ $this->registerLinkTag(['rel' => 'icon', 'type' => 'image/x-icon', 'href' => Yii
                                 <li>
                                     <?= Html::beginForm(['/main/logout'], 'post', ['class' => 'dropdown-item'])
                                         . Html::submitButton('Выход', [
-                                            'class' => 'btn btn-link text-decoration-none w-100 text-start'
+                                            'class' => 'btn btn-link text-decoration-none w-100 text-start dropdown-item'
                                             ])
                                         . Html::endForm() ?>
                                 </li>
