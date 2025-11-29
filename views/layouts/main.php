@@ -60,7 +60,12 @@ $this->registerLinkTag(['rel' => 'icon', 'type' => 'image/x-icon', 'href' => Yii
                                         Доступные брифы
                                     </a>
                                 </li>
-                            .</ul>
+                                <li>
+                                    <a class="dropdown-item" href="<?= Yii::$app->urlManager->createUrl(['brief/completed']) ?>">
+                                        Мои заполненные брифы
+                                    </a>
+                                </li>
+                            </ul>
                         </li>
                     <?php endif; ?>
                     <?php if (Yii::$app->user->isGuest) : ?>
