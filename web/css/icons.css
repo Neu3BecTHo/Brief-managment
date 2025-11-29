@@ -1,0 +1,20 @@
+/* Стили для SVG-иконок в навигации */
+.navbar-nav .nav-link svg,
+.dropdown-item svg {
+    flex-shrink: 0;
+    transition: transform 0.2s ease;
+}
+
+/* Анимация для иконок при наведении */
+.navbar-nav .nav-link:hover svg {
+    transform: scale(1.1);
+}
+
+.dropdown-item:hover svg {
+    transform: translateX(.1rem);
+}
+
+/* Размеры иконок */
+.icon-sm { width: 12px; height: 12px; }
+.icon-md { width: 16px; height: 16px; }
+.icon-lg { width: 20px; height: 20px; }
