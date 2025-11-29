@@ -17,14 +17,15 @@ $this->title = 'Главная';
                 Современная платформа для создания и управления брифами на разработку веб-ресурсов
             </p>
             <div class="d-flex gap-3 justify-content-center flex-wrap">
-                <?php if (Yii::$app->user->isGuest): ?>
+                <?php if (Yii::$app->user->isGuest) : ?>
                     <a href="<?= Yii::$app->urlManager->createUrl(['main/register']) ?>" class="btn btn-primary btn-lg">
                         Создать бриф
                     </a>
-                    <a href="<?= Yii::$app->urlManager->createUrl(['main/login']) ?>" class="btn btn-outline-primary btn-lg">
+                    <a href="<?= Yii::$app->urlManager->createUrl(['main/login']) ?>" 
+                       class="btn btn-outline-primary btn-lg">
                         Войти
                     </a>
-                <?php else: ?>
+                <?php else : ?>
                     <a href="#" class="btn btn-primary btn-lg">
                         Новый бриф
                     </a>
@@ -41,9 +42,8 @@ $this->title = 'Главная';
             <div class="col-lg-4">
                 <div class="floating-card h-100 text-center">
                     <div class="feature-icon mb-3">
-                        <svg class="icon text-primary" fill="currentColor" viewBox="0 0 20 20">
-                            <path d="M9 2a1 1 0 000 2h2a1 1 0 100-2H9z"/>
-                            <path fill-rule="evenodd" d="M4 5a2 2 0 012-2 1 1 0 000 2H6a2 2 0 100 4h2a2 2 0 100-4h-.5a1 1 0 000-2H8a2 2 0 012 2v9a2 2 0 01-2 2H6a2 2 0 01-2-2V5z" clip-rule="evenodd"/>
+                        <svg class="icon text-primary" fill="currentColor">
+                            <use href="/icons/sprite.svg#document"></use>
                         </svg>
                     </div>
                     <h5 class="fw-semibold mb-3">Простые формы</h5>
@@ -55,8 +55,8 @@ $this->title = 'Главная';
             <div class="col-lg-4">
                 <div class="floating-card h-100 text-center">
                     <div class="feature-icon mb-3">
-                        <svg class="icon text-primary" fill="currentColor" viewBox="0 0 20 20">
-                            <path fill-rule="evenodd" d="M11.3 1.046A1 1 0 0112 2v5h4a1 1 0 01.82 1.573l-7 10A1 1 0 018 18v-5H4a1 1 0 01-.82-1.573l7-10a1 1 0 011.12-.38z" clip-rule="evenodd"/>
+                        <svg class="icon text-primary" fill="currentColor">
+                            <use href="/icons/sprite.svg#lightning"></use>
                         </svg>
                     </div>
                     <h5 class="fw-semibold mb-3">Быстрая обработка</h5>
@@ -68,8 +68,8 @@ $this->title = 'Главная';
             <div class="col-lg-4">
                 <div class="floating-card h-100 text-center">
                     <div class="feature-icon mb-3">
-                        <svg class="icon text-primary" fill="currentColor" viewBox="0 0 20 20">
-                            <path d="M13 6a3 3 0 11-6 0 3 3 0 016 0zM18 8a2 2 0 11-4 0 2 2 0 014 0zM14 15a4 4 0 00-8 0v3h8v-3zM6 8a2 2 0 11-4 0 2 2 0 014 0zM16 18v-3a5.972 5.972 0 00-.75-2.906A3.005 3.005 0 0119 15v3h-3zM4.75 12.094A5.973 5.973 0 004 15v3H1v-3a3 3 0 013.75-2.906z"/>
+                        <svg class="icon text-primary" fill="currentColor">
+                            <use href="/icons/sprite.svg#users"></use>
                         </svg>
                     </div>
                     <h5 class="fw-semibold mb-3">Командная работа</h5>

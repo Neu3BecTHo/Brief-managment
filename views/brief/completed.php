@@ -21,7 +21,7 @@ $this->params['breadcrumbs'][] = $this->title;
             <h5 class="card-title mb-0">Список заполненных брифов</h5>
         </div>
         <div class="card-body">
-            <?php if (!empty($completedBriefs)): ?>
+            <?php if (!empty($completedBriefs)) : ?>
                 <div class="table-responsive">
                     <table class="table table-striped table-hover">
                         <thead>
@@ -37,7 +37,7 @@ $this->params['breadcrumbs'][] = $this->title;
                             </tr>
                         </thead>
                         <tbody>
-                            <?php foreach ($completedBriefs as $brief): ?>
+                            <?php foreach ($completedBriefs as $brief) : ?>
                                 <tr>
                                     <td><?= $brief->id ?></td>
                                     <td><?= Html::encode($brief->title) ?></td>
@@ -51,22 +51,34 @@ $this->params['breadcrumbs'][] = $this->title;
                                     <td><?= Yii::$app->formatter->asDate($brief->created_at) ?></td>
                                     <td><?= Yii::$app->formatter->asDate($brief->updated_at) ?></td>
                                     <td>
-                                        <?= Html::a('Просмотр', ['view', 'id' => $brief->id], ['class' => 'btn btn-sm btn-info']) ?>
-                                        <?= Html::a('Редактировать', ['update', 'id' => $brief->id], ['class' => 'btn btn-sm btn-warning']) ?>
-                                        <?= Html::a('Удалить', ['delete', 'id' => $brief->id], [
-                                            'class' => 'btn btn-sm btn-danger',
-                                            'data' => [
-                                                'confirm' => 'Вы уверены, что хотите удалить этот бриф?',
-                                                'method' => 'post',
-                                            ],
-                                        ]) ?>
+                                        <?= Html::a(
+                                            'Просмотр',
+                                            ['view', 'id' => $brief->id],
+                                            ['class' => 'btn btn-sm btn-info']
+                                        ) ?>
+                                        <?= Html::a(
+                                            'Редактировать',
+                                            ['update', 'id' => $brief->id],
+                                            ['class' => 'btn btn-sm btn-warning']
+                                        ) ?>
+                                        <?= Html::a(
+                                            'Удалить',
+                                            ['delete', 'id' => $brief->id],
+                                            [
+                                                'class' => 'btn btn-sm btn-danger',
+                                                'data' => [
+                                                    'confirm' => 'Вы уверены, что хотите удалить этот бриф?',
+                                                    'method' => 'post',
+                                                ],
+                                            ]
+                                        ) ?>
                                     </td>
                                 </tr>
                             <?php endforeach; ?>
                         </tbody>
                     </table>
                 </div>
-            <?php else: ?>
+            <?php else : ?>
                 <div class="alert alert-info">
                     <h4 class="alert-heading">Нет заполненных брифов</h4>
                     <p>В настоящее время нет заполненных брифов. Перейдите к доступным брифам, чтобы начать работу.</p>

@@ -16,6 +16,7 @@ $this->registerMetaTag(['name' => 'viewport', 'content' => 'width=device-width, 
 $this->registerMetaTag(['name' => 'description', 'content' => $this->params['meta_description'] ?? '']);
 $this->registerMetaTag(['name' => 'keywords', 'content' => $this->params['meta_keywords'] ?? '']);
 $this->registerLinkTag(['rel' => 'icon', 'type' => 'image/x-icon', 'href' => Yii::getAlias('@web/favicon.ico')]);
+$this->registerCssFile(Yii::getAlias('@web/css/icons.css'));
 ?>
 <?php $this->beginPage() ?>
 <!DOCTYPE html>
@@ -23,6 +24,12 @@ $this->registerLinkTag(['rel' => 'icon', 'type' => 'image/x-icon', 'href' => Yii
 <head>
     <title><?= Html::encode($this->title) ?></title>
     <?php $this->head() ?>
+    <!-- SVG Sprite -->
+    <?= Html::tag('object', '', [
+        'type' => 'image/svg+xml',
+        'data' => Yii::getAlias('@web/icons/sprite.svg'),
+        'style' => 'display: none;'
+    ]) ?>
 </head>
 <body>
 <?php $this->beginBody() ?>
@@ -43,25 +50,43 @@ $this->registerLinkTag(['rel' => 'icon', 'type' => 'image/x-icon', 'href' => Yii
             <div class="collapse navbar-collapse" id="navbarNav">
                 <ul class="navbar-nav ms-auto">
                     <li class="nav-item">
-                        <a class="nav-link" href="<?= Yii::$app->urlManager->createUrl(['main/index']) ?>">Главная</a>
+                        <a class="nav-link d-flex align-items-center gap-1" 
+                           href="<?= Yii::$app->urlManager->createUrl(['main/index']) ?>">
+                            <svg width="16" height="16" fill="currentColor">
+                                <use href="/icons/sprite.svg#home"></use>
+                            </svg>
+                            Главная
+                        </a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="<?= Yii::$app->urlManager->createUrl(['main/about']) ?>">О проекте</a>
                     </li>
                     <?php if (!Yii::$app->user->isGuest) : ?>
                         <li class="nav-item dropdown">
-                            <a class="nav-link dropdown-toggle" href="#" id="briefesDropdown"
-                            role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                            <a class="nav-link dropdown-toggle d-flex align-items-center gap-1" 
+                               href="#" id="briefesDropdown"
+                               role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                <svg width="16" height="16" fill="currentColor">
+                                    <use href="/icons/sprite.svg#brief"></use>
+                                </svg>
                                 Брифы
                             </a>
                             <ul class="dropdown-menu" aria-labelledby="briefesDropdown">
                                 <li>
-                                    <a class="dropdown-item" href="<?= Yii::$app->urlManager->createUrl(['brief/available']) ?>">
+                                    <a class="dropdown-item d-flex align-items-center gap-2" 
+                                       href="<?= Yii::$app->urlManager->createUrl(['brief/available']) ?>">
+                                        <svg width="14" height="14" fill="currentColor">
+                                            <use href="/icons/sprite.svg#brief"></use>
+                                        </svg>
                                         Доступные брифы
                                     </a>
                                 </li>
                                 <li>
-                                    <a class="dropdown-item" href="<?= Yii::$app->urlManager->createUrl(['brief/completed']) ?>">
+                                    <a class="dropdown-item d-flex align-items-center gap-2" 
+                                       href="<?= Yii::$app->urlManager->createUrl(['brief/completed']) ?>">
+                                        <svg width="14" height="14" fill="currentColor">
+                                            <use href="/icons/sprite.svg#brief"></use>
+                                        </svg>
                                         Мои заполненные брифы
                                     </a>
                                 </li>
@@ -79,16 +104,21 @@ $this->registerLinkTag(['rel' => 'icon', 'type' => 'image/x-icon', 'href' => Yii
                         </li>
                     <?php else : ?>
                         <li class="nav-item dropdown">
-                            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown"
-                            role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                            <a class="nav-link dropdown-toggle d-flex align-items-center gap-1" 
+                               href="#" id="navbarDropdown"
+                               role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                <svg width="16" height="16" fill="currentColor">
+                                    <use href="/icons/sprite.svg#user"></use>
+                                </svg>
                                 <?= Html::encode(Yii::$app->user->identity->username) ?>
                             </a>
                             <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
                                 <li>
                                     <?= Html::beginForm(['/main/logout'], 'post', ['class' => 'dropdown-item'])
                                         . Html::submitButton('Выход', [
-                                            'class' => 'btn btn-link text-decoration-none w-100 text-start dropdown-item'
-                                            ])
+                                            'class' => 'btn btn-link text-decoration-none w-100 text-start'
+                                    . ' dropdown-item'
+                                ])
                                         . Html::endForm() ?>
                                 </li>
                             </ul>
