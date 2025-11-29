@@ -46,4 +46,22 @@ class BriefController extends Controller
             'availableBriefs' => $availableBriefs,
         ]);
     }
+
+    /**
+     * Displays completed briefs page.
+     *
+     * @return string
+     */
+    public function actionCompleted()
+    {
+        $completedBriefs = Briefs::find()
+            ->where(['status_id' => Statuses::findOne(['title' => 'Заполнен'])->id ?? 2])
+            ->andWhere(['user_id' => Yii::$app->user->id])
+            ->with(['user', 'status'])
+            ->all();
+
+        return $this->render('completed', [
+            'completedBriefs' => $completedBriefs,
+        ]);
+    }
 }

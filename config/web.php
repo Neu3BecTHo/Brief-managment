@@ -54,6 +54,7 @@ $config = [
             'rules' => [
                 '' => 'main/index',
                 'briefes' => 'brief/available',
+                'briefes/completed' => 'brief/completed',
             ],
         ],
     ],
