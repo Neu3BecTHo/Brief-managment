@@ -12,6 +12,11 @@ $config = [
         '@npm'   => '@vendor/npm-asset',
     ],
     'language' => 'ru',
+    'modules' => [
+        'admin' => [
+            'class' => 'app\modules\admin\Module',
+        ],
+    ],
     'components' => [
         'request' => [
             // !!! insert a secret key in the following (if it is empty) - this is required by cookie validation
@@ -53,8 +58,11 @@ $config = [
             'showScriptName' => false,
             'rules' => [
                 '' => 'main/index',
+                'about' => 'main/about',
                 'briefes' => 'brief/available',
                 'briefes/completed' => 'brief/completed',
+
+                'admin' => 'admin/default/index',
             ],
         ],
     ],

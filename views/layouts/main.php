@@ -24,7 +24,6 @@ $this->registerCssFile(Yii::getAlias('@web/css/icons.css'));
 <head>
     <title><?= Html::encode($this->title) ?></title>
     <?php $this->head() ?>
-    <!-- SVG Sprite -->
     <?= Html::tag('object', '', [
         'type' => 'image/svg+xml',
         'data' => Yii::getAlias('@web/icons/sprite.svg'),
@@ -59,71 +58,72 @@ $this->registerCssFile(Yii::getAlias('@web/css/icons.css'));
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="<?= Yii::$app->urlManager->createUrl(['main/about']) ?>">О проекте</a>
+                        <a class="nav-link" href="<?= Yii::$app->urlManager->createUrl(['main/about']) ?>">
+                            <svg width="16" height="16" fill="currentColor">
+                                <use href="/icons/sprite.svg#info"></use>
+                            </svg>
+                            О проекте
+                        </a>
                     </li>
-                    <?php if (!Yii::$app->user->isGuest) : ?>
-                        <li class="nav-item dropdown">
-                            <a class="nav-link dropdown-toggle d-flex align-items-center gap-1" 
-                               href="#" id="briefesDropdown"
-                               role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                                <svg width="16" height="16" fill="currentColor">
-                                    <use href="/icons/sprite.svg#brief"></use>
-                                </svg>
-                                Брифы
-                            </a>
-                            <ul class="dropdown-menu" aria-labelledby="briefesDropdown">
-                                <li>
-                                    <a class="dropdown-item d-flex align-items-center gap-2" 
-                                       href="<?= Yii::$app->urlManager->createUrl(['brief/available']) ?>">
-                                        <svg width="14" height="14" fill="currentColor">
-                                            <use href="/icons/sprite.svg#brief"></use>
-                                        </svg>
-                                        Доступные брифы
-                                    </a>
-                                </li>
-                                <li>
-                                    <a class="dropdown-item d-flex align-items-center gap-2" 
-                                       href="<?= Yii::$app->urlManager->createUrl(['brief/completed']) ?>">
-                                        <svg width="14" height="14" fill="currentColor">
-                                            <use href="/icons/sprite.svg#brief"></use>
-                                        </svg>
-                                        Мои заполненные брифы
-                                    </a>
-                                </li>
-                            </ul>
-                        </li>
-                    <?php endif; ?>
-                    <?php if (Yii::$app->user->isGuest) : ?>
-                        <li class="nav-item">
-                            <a class="nav-link" href="<?= Yii::$app->urlManager->createUrl(['main/login']) ?>">Вход</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="<?= Yii::$app->urlManager->createUrl(['main/register']) ?>">
-                                Регистрация
-                            </a>
-                        </li>
-                    <?php else : ?>
-                        <li class="nav-item dropdown">
-                            <a class="nav-link dropdown-toggle d-flex align-items-center gap-1" 
-                               href="#" id="navbarDropdown"
-                               role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                                <svg width="16" height="16" fill="currentColor">
-                                    <use href="/icons/sprite.svg#user"></use>
-                                </svg>
-                                <?= Html::encode(Yii::$app->user->identity->username) ?>
-                            </a>
-                            <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
-                                <li>
-                                    <?= Html::beginForm(['/main/logout'], 'post', ['class' => 'dropdown-item'])
-                                        . Html::submitButton('Выход', [
-                                            'class' => 'btn btn-link text-decoration-none w-100 text-start'
-                                    . ' dropdown-item'
-                                ])
-                                        . Html::endForm() ?>
-                                </li>
-                            </ul>
-                        </li>
-                    <?php endif; ?>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle d-flex align-items-center gap-1" 
+                        href="#" id="briefesDropdown"
+                        role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                            <svg width="16" height="16" fill="currentColor">
+                                <use href="/icons/sprite.svg#brief"></use>
+                            </svg>
+                            Брифы
+                        </a>
+                        <ul class="dropdown-menu" aria-labelledby="briefesDropdown">
+                            <li>
+                                <a class="dropdown-item d-flex align-items-center gap-2" 
+                                href="<?= Yii::$app->urlManager->createUrl(['brief/available']) ?>">
+                                    <svg width="14" height="14" fill="currentColor">
+                                        <use href="/icons/sprite.svg#brief"></use>
+                                    </svg>
+                                    Доступные брифы
+                                </a>
+                            </li>
+                            <li>
+                                <a class="dropdown-item d-flex align-items-center gap-2" 
+                                href="<?= Yii::$app->urlManager->createUrl(['brief/completed']) ?>">
+                                    <svg width="14" height="14" fill="currentColor">
+                                        <use href="/icons/sprite.svg#brief"></use>
+                                    </svg>
+                                    Мои заполненные брифы
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle d-flex align-items-center gap-1" 
+                            href="#" id="navbarDropdown"
+                            role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                            <svg width="16" height="16" fill="currentColor">
+                                <use href="/icons/sprite.svg#user"></use>
+                            </svg>
+                            <?= Html::encode(Yii::$app->user->identity->username) ?>
+                        </a>
+                        <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
+                            <li>
+                                <a class="dropdown-item d-flex align-items-center gap-2" 
+                                href="<?= Yii::$app->urlManager->createUrl(['admin']) ?>">
+                                    <svg width="14" height="14" fill="currentColor">
+                                        <use href="/icons/sprite.svg#brief"></use>
+                                    </svg>
+                                    Админ-панель
+                                </a>
+                            </li>
+                            <li>
+                                <?= Html::beginForm(['/main/logout'], 'post', ['class' => 'dropdown-item'])
+                                    . Html::submitButton('Выход', [
+                                        'class' => 'btn btn-link text-decoration-none w-100 text-start'
+                                . ' dropdown-item'
+                            ])
+                                    . Html::endForm() ?>
+                            </i>
+                        </ul>
+                    </li>
                 </ul>
             </div>
         </div>
@@ -139,40 +139,6 @@ $this->registerCssFile(Yii::getAlias('@web/css/icons.css'));
         <?= $content ?>
     </div>
 </main>
-
-<footer id="footer">
-    <div class="container">
-        <div class="row">
-            <div class="col-lg-4 mb-4 mb-lg-0">
-                <h5 class="text-white mb-3"><?= Html::encode(Yii::$app->name) ?></h5>
-                <p>
-                    Современная платформа для управления проектами с минималистичным дизайном и удобным интерфейсом.
-                </p>
-            </div>
-            <div class="col-lg-4 mb-4 mb-lg-0">
-                <h5 class="text-white mb-3">Навигация</h5>
-                <ul class="list-unstyled">
-                    <li class="mb-2">
-                        <a href="<?= Yii::$app->urlManager->createUrl(['main/index']) ?>" class="text-decoration-none">
-                            Главная
-                        </a>
-                    </li>
-                    <li class="mb-2">
-                        <a href="<?= Yii::$app->urlManager->createUrl(['main/about']) ?>" class="text-decoration-none">
-                            О проекте
-                        </a>
-                    </li>
-                </ul>
-            </div>
-            <div class="col-lg-4">
-                <h5 class="text-white mb-3">Информация</h5>
-                <p class="mb-2">
-                    © <?= date('Y') ?> <?= Html::encode(Yii::$app->name) ?>
-                </p>
-            </div>
-        </div>
-    </div>
-</footer>
 
 <?php $this->endBody() ?>
 </body>
