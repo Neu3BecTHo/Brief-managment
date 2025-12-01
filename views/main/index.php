@@ -18,18 +18,13 @@ $this->title = 'Главная';
             </p>
             <div class="d-flex gap-3 justify-content-center flex-wrap">
                 <?php if (Yii::$app->user->isGuest) : ?>
-                    <a href="<?= Yii::$app->urlManager->createUrl(['main/register']) ?>" class="btn btn-primary btn-lg">
-                        Создать бриф
-                    </a>
                     <a href="<?= Yii::$app->urlManager->createUrl(['main/login']) ?>" 
                        class="btn btn-outline-primary btn-lg">
                         Войти
                     </a>
                 <?php else : ?>
-                    <a href="#" class="btn btn-primary btn-lg">
-                        Новый бриф
-                    </a>
-                    <a href="#" class="btn btn-outline-primary btn-lg">
+                    <a href="<?= Yii::$app->urlManager->createUrl(['brief/available']) ?>" 
+                       class="btn btn-outline-primary btn-lg">
                         Мои брифы
                     </a>
                 <?php endif; ?>
@@ -43,7 +38,7 @@ $this->title = 'Главная';
                 <div class="floating-card h-100 text-center">
                     <div class="feature-icon mb-3">
                         <svg class="icon text-primary" fill="currentColor">
-                            <use href="/icons/sprite.svg#document"></use>
+                            <use href="<?= Yii::getAlias('@web/icons/sprite.svg#document') ?>"></use>
                         </svg>
                     </div>
                     <h5 class="fw-semibold mb-3">Простые формы</h5>
@@ -56,7 +51,7 @@ $this->title = 'Главная';
                 <div class="floating-card h-100 text-center">
                     <div class="feature-icon mb-3">
                         <svg class="icon text-primary" fill="currentColor">
-                            <use href="/icons/sprite.svg#lightning"></use>
+                            <use href="<?= Yii::getAlias('@web/icons/sprite.svg#lightning') ?>"></use>
                         </svg>
                     </div>
                     <h5 class="fw-semibold mb-3">Быстрая обработка</h5>
@@ -69,7 +64,7 @@ $this->title = 'Главная';
                 <div class="floating-card h-100 text-center">
                     <div class="feature-icon mb-3">
                         <svg class="icon text-primary" fill="currentColor">
-                            <use href="/icons/sprite.svg#users"></use>
+                            <use href="<?= Yii::getAlias('@web/icons/sprite.svg#users') ?>"></use>
                         </svg>
                     </div>
                     <h5 class="fw-semibold mb-3">Командная работа</h5>
