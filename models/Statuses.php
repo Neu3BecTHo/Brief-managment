@@ -53,6 +53,17 @@ class Statuses extends ActiveRecord
     }
 
     /**
+     * Получение списка статусов для выпадающего списка
+     */
+    public static function getStatusesDropdown()
+    {
+        return self::find()
+            ->select(['title', 'id'])
+            ->indexBy('id')
+            ->column();
+    }
+
+    /**
      * Gets query for [[Briefs]].
      *
      * @return ActiveQuery

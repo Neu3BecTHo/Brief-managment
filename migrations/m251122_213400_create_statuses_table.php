@@ -20,6 +20,12 @@ class m251122_213400_create_statuses_table extends Migration
             'created_at' => $this->timestamp()->notNull()->defaultExpression('CURRENT_TIMESTAMP'),
             'updated_at' => $this->timestamp()->notNull()->defaultExpression('CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP'),
         ]);
+
+        $this->batchInsert('{{%statuses}}', ['id', 'title'], [
+            ['1', 'Черновик'],
+            ['2', 'Активен'],
+            ['3', 'Архив'],
+        ]);
     }
 
     /**

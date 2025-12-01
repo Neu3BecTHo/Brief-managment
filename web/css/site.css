@@ -103,6 +103,15 @@ main {
     vertical-align: middle;
 }
 
+/* Убираем моргание dropdown */
+.dropdown-menu {
+    display: none;
+}
+
+.dropdown-menu.show {
+    display: block;
+}
+
 /* Навигационная панель */
 .navbar {
     background: rgba(255, 255, 255, 0.95) !important;
@@ -362,6 +371,15 @@ main {
     box-shadow: var(--shadow-lg);
 }
 
+.color-dot {
+    display: inline-block;
+    width: 18px;
+    height: 18px;
+    border-radius: 999px;
+    border: 1px solid rgba(0,0,0,0.1);
+}
+
+
 .card-header {
     background: linear-gradient(135deg, var(--gray-50), var(--white));
     border-bottom: 1px solid var(--gray-200);
@@ -564,6 +582,7 @@ footer a:hover {
     transition: all var(--transition-normal);
     border: 1px solid var(--gray-200);
     position: relative;
+    overflow: hidden;
 }
 
 .floating-card:hover {

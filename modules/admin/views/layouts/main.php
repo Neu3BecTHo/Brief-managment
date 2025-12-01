@@ -37,7 +37,7 @@ $this->registerCssFile(Yii::getAlias('@web/css/admin.css'));
     <div class="row h-100 w-100">
         <nav id="sidebar" class="col-md-3 col-lg-2 d-none d-md-block sidebar bg-dark">
             <div class="position-sticky pt-3">
-                <a href="<?= Yii::$app->urlManager->createUrl(['admin/index']) ?>" 
+                <a href="<?= Yii::$app->urlManager->createUrl(['admin/brief/index']) ?>" 
                    class="d-flex align-items-center mb-3 text-white text-decoration-none px-3">
                     <span class="fs-4 fw-bold"><?= Html::encode(Yii::$app->name) ?></span>
                 </a>

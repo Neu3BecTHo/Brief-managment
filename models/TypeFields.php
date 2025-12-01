@@ -53,6 +53,35 @@ class TypeFields extends ActiveRecord
     }
 
     /**
+     * Получение списка типов для выпадающего списка с переводом
+     */
+    public static function getTypesDropdown()
+    {
+        $types = self::find()->select(['title', 'id'])->indexBy('id')->column();
+
+        $translations = [
+        'text' => 'Текстовое поле',
+        'number' => 'Число',
+        'select' => 'Выпадающий список',
+        'radio' => 'Радиокнопки',
+        'checkbox' => 'Чекбоксы',
+        'textarea' => 'Текстовая область',
+        'date' => 'Дата',
+        'email' => 'Email',
+        'phone' => 'Телефон',
+        'color' => 'Цвет',
+        'comment' => 'Комментарий',
+        ];
+
+        $result = [];
+        foreach ($types as $id => $code) {
+            $result[$id] = $translations[$code] ?? $code;
+        }
+
+        return $result;
+    }
+
+    /**
      * Gets query for [[BriefQuestions]].
      *
      * @return ActiveQuery

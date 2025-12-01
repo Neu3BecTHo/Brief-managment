@@ -75,7 +75,7 @@ class Briefs extends ActiveRecord
      */
     public function getBriefQuestions()
     {
-        return $this->hasMany(BriefQuestions::class, ['brief_id' => 'id']);
+        return $this->hasMany(BriefQuestions::class, ['brief_id' => 'id'])->orderBy(['sort_order' => SORT_ASC]);
     }
 
     /**
