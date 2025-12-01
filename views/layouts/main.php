@@ -34,15 +34,15 @@ $this->registerCssFile(Yii::getAlias('@web/css/icons.css'));
 <?php $this->beginBody() ?>
 
 <header id="header">
-    <nav class="navbar navbar-expand-lg ">
+    <nav class="navbar navbar-expand-lg">
         <div class="container">
             <a class="navbar-brand" href="<?= Yii::$app->homeUrl ?>">
                 <?= Html::encode(Yii::$app->name) ?>
             </a>
             
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
-            data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false"
-            aria-label="Смена навигации">
+                    data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false"
+                    aria-label="Смена навигации">
                 <span class="navbar-toggler-icon"></span>
             </button>
             
@@ -52,78 +52,103 @@ $this->registerCssFile(Yii::getAlias('@web/css/icons.css'));
                         <a class="nav-link d-flex align-items-center gap-1" 
                            href="<?= Yii::$app->urlManager->createUrl(['main/index']) ?>">
                             <svg width="16" height="16" fill="currentColor">
-                                <use href="/icons/sprite.svg#home"></use>
+                                <use href="<?= Yii::getAlias('@web/icons/sprite.svg#home') ?>"></use>
                             </svg>
                             Главная
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="<?= Yii::$app->urlManager->createUrl(['main/about']) ?>">
+                        <a class="nav-link d-flex align-items-center gap-1" 
+                           href="<?= Yii::$app->urlManager->createUrl(['main/about']) ?>">
                             <svg width="16" height="16" fill="currentColor">
-                                <use href="/icons/sprite.svg#info"></use>
+                                <use href="<?= Yii::getAlias('@web/icons/sprite.svg#info') ?>"></use>
                             </svg>
                             О проекте
                         </a>
                     </li>
-                    <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle d-flex align-items-center gap-1" 
-                        href="#" id="briefesDropdown"
-                        role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                            <svg width="16" height="16" fill="currentColor">
-                                <use href="/icons/sprite.svg#brief"></use>
-                            </svg>
-                            Брифы
-                        </a>
-                        <ul class="dropdown-menu" aria-labelledby="briefesDropdown">
-                            <li>
-                                <a class="dropdown-item d-flex align-items-center gap-2" 
-                                href="<?= Yii::$app->urlManager->createUrl(['brief/available']) ?>">
-                                    <svg width="14" height="14" fill="currentColor">
-                                        <use href="/icons/sprite.svg#brief"></use>
-                                    </svg>
-                                    Доступные брифы
-                                </a>
-                            </li>
-                            <li>
-                                <a class="dropdown-item d-flex align-items-center gap-2" 
-                                href="<?= Yii::$app->urlManager->createUrl(['brief/completed']) ?>">
-                                    <svg width="14" height="14" fill="currentColor">
-                                        <use href="/icons/sprite.svg#brief"></use>
-                                    </svg>
-                                    Мои заполненные брифы
-                                </a>
-                            </li>
-                        </ul>
-                    </li>
-                    <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle d-flex align-items-center gap-1" 
-                            href="#" id="navbarDropdown"
-                            role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                            <svg width="16" height="16" fill="currentColor">
-                                <use href="/icons/sprite.svg#user"></use>
-                            </svg>
-                            <?= Html::encode(Yii::$app->user->identity->username) ?>
-                        </a>
-                        <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
-                            <li>
-                                <a class="dropdown-item d-flex align-items-center gap-2" 
-                                href="<?= Yii::$app->urlManager->createUrl(['admin']) ?>">
-                                    <svg width="14" height="14" fill="currentColor">
-                                        <use href="/icons/sprite.svg#brief"></use>
-                                    </svg>
-                                    Админ-панель
-                                </a>
-                            </li>
-                            <li>
-                                <?= Html::beginForm(['/main/logout'], 'post', ['class' => 'dropdown-item'])
-                                    . Html::submitButton('Выход', [
-                                        'class' => 'btn btn-link text-decoration-none w-100 text-start'
-                                . ' dropdown-item'
-                            ])
-                                    . Html::endForm() ?>
-                            </i>
-                        </ul>
-                    </li>
+                    
+                    <?php if (!Yii::$app->user->isGuest) : ?>
+                        <!-- Меню брифов (только для авторизованных) -->
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle d-flex align-items-center gap-1" 
+                               href="#" id="briefesDropdown"
+                               role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                <svg width="16" height="16" fill="currentColor">
+                                    <use href="<?= Yii::getAlias('@web/icons/sprite.svg#brief') ?>"></use>
+                                </svg>
+                                Брифы
+                            </a>
+                            <ul class="dropdown-menu" aria-labelledby="briefesDropdown">
+                                <li>
+                                    <a class="dropdown-item d-flex align-items-center gap-2" 
+                                       href="<?= Yii::$app->urlManager->createUrl(['brief/available']) ?>">
+                                        <svg width="14" height="14" fill="currentColor">
+                                            <use href="<?= Yii::getAlias('@web/icons/sprite.svg#brief') ?>"></use>
+                                        </svg>
+                                        Доступные брифы
+                                    </a>
+                                </li>
+                                <li>
+                                    <a class="dropdown-item d-flex align-items-center gap-2" 
+                                       href="<?= Yii::$app->urlManager->createUrl(['brief/completed']) ?>">
+                                        <svg width="14" height="14" fill="currentColor">
+                                            <use href="<?= Yii::getAlias('@web/icons/sprite.svg#file-text') ?>"></use>
+                                        </svg>
+                                        Мои заполненные брифы
+                                    </a>
+                                </li>
+                            </ul>
+                        </li>
+                    <?php endif; ?>
+                    
+                    <?php if (Yii::$app->user->isGuest) : ?>
+                        <!-- Меню для гостей -->
+                        <li class="nav-item">
+                            <a class="nav-link" href="<?= Yii::$app->urlManager->createUrl(['main/login']) ?>">
+                                Вход
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="<?= Yii::$app->urlManager->createUrl(['main/register']) ?>">
+                                Регистрация
+                            </a>
+                        </li>
+                    <?php else : ?>
+                        <!-- Меню пользователя (только для авторизованных) -->
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle d-flex align-items-center gap-1" 
+                               href="#" id="navbarDropdown"
+                               role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                <svg width="16" height="16" fill="currentColor">
+                                    <use href="<?= Yii::getAlias('@web/icons/sprite.svg#user') ?>"></use>
+                                </svg>
+                                <?= Html::encode(Yii::$app->user->identity->username) ?>
+                            </a>
+                            <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
+                                <?php if (Yii::$app->user->can('admin')) : ?>
+                                    <li>
+                                        <a class="dropdown-item d-flex align-items-center gap-2" 
+                                        href="<?= Yii::$app->urlManager->createUrl(['admin/brief/index']) ?>">
+                                            <svg width="14" height="14" fill="currentColor">
+                                                <use href="<?= Yii::getAlias('@web/icons/sprite.svg#settings') ?>"></use>
+                                            </svg>
+                                            Админ-панель
+                                        </a>
+                                    </li>
+                                <?php endif; ?>
+                                <li><hr class="dropdown-divider"></li>
+                                <li>
+                                    <?= Html::beginForm(['/main/logout'], 'post', ['class' => 'dropdown-item'])
+                                        . Html::submitButton('Выход', [
+                                            'class' =>
+                                                    'btn btn-link text-decoration-none w-100
+                                                    text-start dropdown-item'
+                                        ])
+                                        . Html::endForm() ?>
+                                </li>
+                            </ul>
+                        </li>
+                    <?php endif; ?>
                 </ul>
             </div>
         </div>

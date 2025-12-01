@@ -32,7 +32,7 @@ $this->params['breadcrumbs'][] = $this->title;
                     <div class="col-md-6">
                         <div class="feature-icon mb-3">
                             <svg class="icon text-primary" fill="currentColor">
-                                <use href="/icons/sprite.svg#document"></use>
+                                <use href="<?= Yii::getAlias('@web/icons/sprite.svg#document') ?>"></use>
                             </svg>
                         </div>
                         <h5 class="fw-semibold mb-2">Стандартизированные брифы</h5>
@@ -43,7 +43,7 @@ $this->params['breadcrumbs'][] = $this->title;
                     <div class="col-md-6">
                         <div class="feature-icon mb-3">
                             <svg class="icon text-primary" fill="currentColor">
-                                <use href="/icons/sprite.svg#lightning"></use>
+                                <use href="<?= Yii::getAlias('@web/icons/sprite.svg#lightning') ?>"></use>
                             </svg>
                         </div>
                         <h5 class="fw-semibold mb-2">Быстрая обработка</h5>
@@ -54,7 +54,7 @@ $this->params['breadcrumbs'][] = $this->title;
                     <div class="col-md-6">
                         <div class="feature-icon mb-3">
                             <svg class="icon text-primary" fill="currentColor">
-                                <use href="/icons/sprite.svg#users"></use>
+                                <use href="<?= Yii::getAlias('@web/icons/sprite.svg#users') ?>"></use>
                             </svg>
                         </div>
                         <h5 class="fw-semibold mb-2">Ролевой доступ</h5>
@@ -65,7 +65,7 @@ $this->params['breadcrumbs'][] = $this->title;
                     <div class="col-md-6">
                         <div class="feature-icon mb-3">
                             <svg class="icon text-primary" fill="currentColor">
-                                <use href="/icons/sprite.svg#shield"></use>
+                                <use href="<?= Yii::getAlias('@web/icons/sprite.svg#shield') ?>"></use>
                             </svg>
                         </div>
                         <h5 class="fw-semibold mb-2">Прозрачность процесса</h5>
