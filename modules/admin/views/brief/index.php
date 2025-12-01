@@ -13,7 +13,7 @@ $this->params['breadcrumbs'][] = $this->title;
     <div class="d-flex justify-content-between align-items-center mb-4">
         <h1><?= Html::encode($this->title) ?></h1>
         <?= Html::a(
-            '<svg width="16" height="16" fill="currentColor"><use href="/icons/sprite.svg#document"></use></svg> Создать бриф',
+            '<svg width="16" height="16" fill="currentColor"><use href="' . Yii::getAlias('@web/icons/sprite.svg#document') . '"></use></svg> Создать бриф',
             ['create'],
             ['class' => 'btn btn-primary d-flex align-items-center gap-2']
         ) ?>
@@ -56,17 +56,17 @@ $this->params['breadcrumbs'][] = $this->title;
                             <td class="text-end">
                                 <div class="btn-group btn-group-sm">
                                     <?= Html::a(
-                                        '<svg width="14" height="14" fill="currentColor"><use href="/icons/sprite.svg#brief"></use></svg>',
+                                        '<svg width="14" height="14" fill="currentColor"><use href="' . Yii::getAlias('@web/icons/sprite.svg#brief') . '"></use></svg>',
                                         ['view', 'id' => $brief->id],
                                         ['class' => 'btn btn-outline-primary', 'title' => 'Просмотр']
                                     ) ?>
                                     <?= Html::a(
-                                        '<svg width="14" height="14" fill="currentColor"><use href="/icons/sprite.svg#settings"></use></svg>',
+                                        '<svg width="14" height="14" fill="currentColor"><use href="' . Yii::getAlias('@web/icons/sprite.svg#settings') . '"></use></svg>',
                                         ['update', 'id' => $brief->id],
                                         ['class' => 'btn btn-outline-secondary', 'title' => 'Редактировать']
                                     ) ?>
                                     <?= Html::a(
-                                        '<svg width="14" height="14" fill="currentColor"><use href="/icons/sprite.svg#file-text"></use></svg>',
+                                        '<svg width="14" height="14" fill="currentColor"><use href="' . Yii::getAlias('@web/icons/sprite.svg#file-text') . '"></use></svg>',
                                         ['responses', 'id' => $brief->id],
                                         ['class' => 'btn btn-outline-success', 'title' => 'Ответы']
                                     ) ?>

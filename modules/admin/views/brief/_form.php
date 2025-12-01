@@ -83,7 +83,7 @@ $this->registerJsFile(
 <!-- Плавающая кнопка добавления вопроса -->
 <button type="button" class="btn btn-success btn-floating" id="add-question-btn" title="Добавить вопрос">
     <svg width="24" height="24" fill="currentColor">
-        <use href="/icons/sprite.svg#document"></use>
+        <use href="<?= Yii::getAlias('@web/icons/sprite.svg#document') ?>"></use>
     </svg>
     <span class="btn-floating-text">+</span>
 </button>
