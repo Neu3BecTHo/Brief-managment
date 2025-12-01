@@ -18,6 +18,9 @@ class m251122_214548_create_brief_questions_table extends Migration
             'type_field_id' => $this->integer(2)->notNull(),
 
             'question' => $this->string(255)->notNull(),
+            'options' => $this->text()->null(),
+            'is_required' => $this->boolean()->notNull()->defaultValue(false),
+            'sort_order' => $this->integer(3)->notNull()->defaultValue(0),
 
             'created_at' => $this->timestamp()->notNull()->defaultExpression('CURRENT_TIMESTAMP'),
             'updated_at' => $this->timestamp()->notNull()->defaultExpression('CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP'),

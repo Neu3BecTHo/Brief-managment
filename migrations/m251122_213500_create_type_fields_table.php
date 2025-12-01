@@ -20,6 +20,20 @@ class m251122_213500_create_type_fields_table extends Migration
             'created_at' => $this->timestamp()->notNull()->defaultExpression('CURRENT_TIMESTAMP'),
             'updated_at' => $this->timestamp()->notNull()->defaultExpression('CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP'),
         ]);
+
+        $this->batchInsert('{{%type_fields}}', ['id', 'title'], [
+            [1, 'text'],
+            [2, 'number'],
+            [3, 'select'],
+            [4, 'radio'],
+            [5, 'checkbox'],
+            [6, 'textarea'],
+            [7, 'date'],
+            [8, 'email'],
+            [9, 'phone'],
+            [10, 'color'],
+            [11, 'comment'],
+        ]);
     }
 
     /**

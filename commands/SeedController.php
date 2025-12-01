@@ -36,15 +36,15 @@ class SeedController extends Controller
 
         try {
             $user = $authManager->createRole('user');
-            Console::error('Роль "Пользователь" не создана.');
+            Console::output('Роль "Пользователь" создана.');
             $user->description = 'Пользователь с базовыми правами.';
 
             $manager = $authManager->createRole('manager');
-            Console::error('Роль "Менеджер" не создана.');
+            Console::output('Роль "Менеджер" создана.');
             $manager->description = 'Менеджер с правами на рассмотрение брифов.';
 
             $admin = $authManager->createRole('admin');
-            Console::error('Роль "Администратор" не создана.');
+            Console::output('Роль "Администратор" создана.');
             $admin->description = 'Администратор с правами на все.';
 
             $authManager->add($user);

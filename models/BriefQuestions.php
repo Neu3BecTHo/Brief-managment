@@ -13,6 +13,9 @@ use yii\db\ActiveRecord;
  * @property int $brief_id
  * @property int $type_field_id
  * @property string $question
+ * @property string $options
+ * @property bool $is_required
+ * @property int $sort_order
  * @property string $created_at
  * @property string $updated_at
  *
@@ -36,8 +39,9 @@ class BriefQuestions extends ActiveRecord
     public function rules()
     {
         return [
-            [['brief_id', 'type_field_id', 'question'], 'required'],
-            [['brief_id', 'type_field_id'], 'integer'],
+            [['brief_id', 'type_field_id', 'question', 'sort_order'], 'required'],
+            [['brief_id', 'type_field_id', 'sort_order'], 'integer'],
+            [['is_required'], 'boolean'],
             [['created_at', 'updated_at'], 'safe'],
             [['question'], 'string', 'max' => 255],
             [['brief_id'], 'exist', 'skipOnError' => true,
@@ -59,9 +63,39 @@ class BriefQuestions extends ActiveRecord
             'brief_id' => Yii::t('app', 'Бриф'),
             'type_field_id' => Yii::t('app', 'Тип поля'),
             'question' => Yii::t('app', 'Вопрос'),
+            'options' => Yii::t('app', 'Опции'),
+            'is_required' => Yii::t('app', 'Обязательно'),
+            'sort_order' => Yii::t('app', 'Порядок сортировки'),
             'created_at' => Yii::t('app', 'Дата создания'),
             'updated_at' => Yii::t('app', 'Дата обновления'),
         ];
+    }
+
+    /**
+     * Получение вариантов ответов как массив
+     */
+    public function getOptionsArray()
+    {
+        if (empty($this->options)) {
+            return [];
+        }
+
+        $decoded = json_decode($this->options, true);
+
+        // Проверяем что декодирование прошло успешно
+        if (json_last_error() !== JSON_ERROR_NONE || !is_array($decoded)) {
+            return [];
+        }
+
+        return $decoded;
+    }
+
+    /**
+     * Установка вариантов ответов из массива
+     */
+    public function setOptionsArray($options)
+    {
+        $this->options = json_encode($options, JSON_UNESCAPED_UNICODE);
     }
 
     /**

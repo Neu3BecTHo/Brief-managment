@@ -32,6 +32,8 @@ class RegisterForm extends Model
             [['password'], 'string', 'max' => 255],
             [['email'], 'string', 'max' => 100],
             [['phone'], 'string', 'max' => 20],
+            [['phone'], 'match', 'pattern' => '/^\+7\s?\(\d{3}\)\s?\d{3}-\d{2}-\d{2}$/',
+            'message' => 'Введите номер телефона в формате +7 (XXX) XXX-XX-XX'],
             [['username'], 'unique', 'targetClass' => User::class, 'targetAttribute' => 'username'],
             [['email'], 'unique', 'targetClass' => User::class, 'targetAttribute' => 'email'],
             [['phone'], 'unique', 'targetClass' => User::class, 'targetAttribute' => 'phone'],
