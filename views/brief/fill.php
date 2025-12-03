@@ -136,7 +136,10 @@ $this->params['breadcrumbs'][] = $this->title;
 
                             <?php elseif ($typeCode === 'select') : ?>
                                 <?= $form->field($model, $fieldName)
-                                    ->dropDownList(array_combine($options, $options), ['prompt' => 'Выберите вариант', 'class' => 'form-row'])
+                                    ->dropDownList(
+                                        array_combine($options, $options),
+                                        ['prompt' => 'Выберите вариант', 'class' => 'form-row']
+                                    )
                                     ->label(false) ?>
 
                             <?php elseif ($typeCode === 'radio') : ?>
