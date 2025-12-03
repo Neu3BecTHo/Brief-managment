@@ -1,7 +1,6 @@
 <?php
 
 use yii\helpers\Html;
-use app\models\TypeField;
 
 /** @var yii\web\View $this */
 /** @var app\models\Briefs $brief */
@@ -10,7 +9,6 @@ $this->title = $brief->title;
 $this->params['breadcrumbs'][] = ['label' => 'Брифы', 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
 
-// Переводы типов
 $typeTranslations = [
     'text' => 'Текстовое поле',
     'number' => 'Число',
@@ -25,7 +23,6 @@ $typeTranslations = [
     'comment' => 'Комментарий',
 ];
 
-// Иконки
 $typeIcons = [
     'text' => 'document',
     'number' => 'document',
@@ -39,7 +36,6 @@ $typeIcons = [
     'color' => 'palette',
 ];
 
-// Цвета бейджей
 $typeBadgeColors = [
     'text' => 'secondary',
     'number' => 'info',
@@ -58,16 +54,24 @@ $typeBadgeColors = [
 <div class="brief-view">
     <div class="d-flex justify-content-between align-items-center mb-4">
         <h1><?= Html::encode($this->title) ?></h1>
-        <div class="btn-group" role="group">
-            <?= Html::a('Редактировать', ['update', 'id' => $brief->id], ['class' => 'btn btn-primary']) ?>
-            <?= Html::a('Ответы', ['responses', 'id' => $brief->id], ['class' => 'btn btn-success']) ?>
-            <?= Html::a('Удалить', ['delete', 'id' => $brief->id], [
-                'class' => 'btn btn-danger',
+
+        <div class="d-flex">
+            <?= Html::a(
+                '<svg width="14" height="14" fill="currentColor"><use href="' . Yii::getAlias('@web/icons/sprite.svg#pencil') . '"></use></svg> Редактировать',
+                ['update', 'id' => $brief->id],
+                ['class' => 'btn btn-outline-primary me-1']
+            ) ?>
+            <?= Html::a(
+                '<svg width="14" height="14" fill="currentColor"><use href="' . Yii::getAlias('@web/icons/sprite.svg#trash') . '"></use></svg> Удалить',
+                ['delete', 'id' => $brief->id],
+                [
+                'class' => 'btn btn-outline-danger',
                 'data' => [
-                    'confirm' => 'Вы уверены?',
+                    'confirm' => 'Вы уверены, что хотите удалить этот элемент?',
                     'method' => 'post',
                 ],
-            ]) ?>
+                ]
+            ) ?>
         </div>
     </div>
 

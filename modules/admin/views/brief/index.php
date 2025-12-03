@@ -66,7 +66,7 @@ $this->params['breadcrumbs'][] = $this->title;
                                         ['class' => 'btn btn-outline-secondary', 'title' => 'Редактировать']
                                     ) ?>
                                     <?= Html::a(
-                                        '<svg width="14" height="14" fill="currentColor"><use href="' . Yii::getAlias('@web/icons/sprite.svg#file-text') . '"></use></svg>',
+                                        '<svg width="14" height="14" fill="currentColor"><use href="' . Yii::getAlias('@web/icons/sprite.svg#eye') . '"></use></svg>',
                                         ['responses', 'id' => $brief->id],
                                         ['class' => 'btn btn-outline-success', 'title' => 'Ответы']
                                     ) ?>

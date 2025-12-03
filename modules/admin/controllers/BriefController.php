@@ -8,6 +8,7 @@ use app\models\BriefQuestions;
 use app\models\Briefs;
 use app\models\Statuses;
 use app\models\TypeFields;
+use yii\helpers\Html;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\helpers\Json;
@@ -159,18 +160,50 @@ class BriefController extends Controller
     }
 
     /**
+     * Детальный просмотр ответов конкретного пользователя на бриф
+     */
+    public function actionResponseView($id, $user_id)
+    {
+        $brief = $this->findModel($id);
+        $user = \app\models\User::findOne($user_id);
+
+        if (!$user) {
+            throw new NotFoundHttpException('Пользователь не найден');
+        }
+
+        // Ищем ответы этого пользователя на этот бриф
+        $answers = BriefAnswers::find()
+            ->joinWith('briefQuestion')
+            ->where([
+                'user_id' => $user_id,
+                '{{%brief_questions}}.brief_id' => $brief->id
+            ])
+            ->all();
+
+        if (empty($answers)) {
+            throw new NotFoundHttpException('Ответов от этого пользователя нет');
+        }
+
+        return $this->render('response-view', [
+            'brief' => $brief,
+            'user' => $user,
+            'answers' => $answers,
+        ]);
+    }
+
+    /**
      * Сохранение вопросов
      */
     protected function saveQuestions($briefId, $questions)
     {
         if (empty($questions)) {
-            return; // Если вопросов нет, выходим
+            return;
         }
 
         foreach ($questions as $index => $questionData) {
             // Проверяем, что данные есть
             if (empty($questionData['question']) || empty($questionData['type_field_id'])) {
-                continue; // Пропускаем пустые вопросы
+                continue;
             }
 
             $question = new BriefQuestions();
@@ -190,6 +223,58 @@ class BriefController extends Controller
                 throw new \Exception('Ошибка сохранения вопроса: ' . Json::encode($question->errors));
             }
         }
+    }
+
+    /**
+     * Отправка PDF на email
+     */
+    public function actionSendPdf($id, $response_user_id = null)
+    {
+        $brief = $this->findModel($id);
+
+        if ($response_user_id) {
+            $targetUser = \app\models\User::findOne($response_user_id);
+        } else {
+            $targetUser = $brief->user;
+        }
+
+        if (!$targetUser) {
+            throw new NotFoundHttpException('Целевой пользователь не найден.');
+        }
+
+            $request = Yii::$app->request;
+            $email = $request->post('email') ?: Yii::$app->user->identity->email;
+
+        if (!$email) {
+            Yii::$app->session->setFlash('error', 'Email получателя не найден.');
+            return $this->redirect($request->referrer);
+        }
+
+        try {
+            $html = $this->renderPartial('_brief-pdf', [
+                'brief' => $brief,
+                'targetUser' => $targetUser,
+            ]);
+
+            $mpdf = new \Mpdf\Mpdf(['tempDir' => Yii::getAlias('@runtime/pdf'), 'default_font' => 'dejavusans']);
+            $mpdf->WriteHTML($html);
+
+            Yii::$app->mailer->compose()
+            ->setFrom([$_ENV['SMTP_EMAIL'] => 'Админка Брифов'])
+            ->setTo($email)
+            ->setSubject('Отчет по брифу: ' . $brief->title)
+            ->attachContent($mpdf->Output('', 'S'), [
+                'fileName' => 'Brief-report-user' . $targetUser->id . '.pdf',
+                'contentType' => 'application/pdf'
+            ])
+            ->send();
+
+            Yii::$app->session->setFlash('success', 'Отчет по ответам ' . $targetUser->username . ' отправлен на: ' . Html::encode($email));
+        } catch (\Exception $e) {
+            Yii::$app->session->setFlash('error', 'Ошибка отправки: ' . $e->getMessage());
+        }
+
+        return $this->redirect($request->referrer);
     }
 
     /**
