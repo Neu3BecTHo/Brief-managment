@@ -44,10 +44,10 @@ $config = [
             'viewPath' => '@app/mail',
             'useFileTransport' => false,
             'transport' => [
-                'scheme' => 'smtps', // smtps = SSL (порт 465)
+                'scheme' => 'smtps',
                 'host' => $_ENV['SMTP_HOST'],
                 'username' => $_ENV['SMTP_EMAIL'],
-                'password' => $_ENV['SMTP_PASSWORD'], // 16 символов
+                'password' => $_ENV['SMTP_PASSWORD'],
                 'port' => $_ENV['SMTP_PORT'],
                 'options' => [
                     'ssl' => [
