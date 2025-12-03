@@ -85,13 +85,13 @@ class MainController extends Controller
     public function actionLogin()
     {
         if (!Yii::$app->user->isGuest) {
-            return $this->goHome();
+            return $this->redirect(['main/index']);
         }
 
         $model = new LoginForm();
         if ($model->load(Yii::$app->request->post()) && $model->login()) {
             Yii::$app->session->setFlash('success', 'Вы успешно авторизовались.');
-            return $this->goBack();
+            return $this->redirect(['main/index']);
         }
 
         $model->password = '';
@@ -110,7 +110,7 @@ class MainController extends Controller
         Yii::$app->user->logout();
         Yii::$app->session->setFlash('success', 'Вы вышли из системы.');
 
-        return $this->goHome();
+        return $this->redirect(['main/index']);
     }
 
     /**

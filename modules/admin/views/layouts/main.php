@@ -73,10 +73,6 @@ $this->registerCssFile(Yii::getAlias('@web/css/admin.css'));
                     <?= $content ?>
                 </div>
             </div>
-
-            <footer class="text-muted text-center text-small">
-                <p class="mb-1">&copy; <?= date('Y') ?> <?= Html::encode(Yii::$app->name) ?> Admin</p>
-            </footer>
         </main>
     </div>
 </div>

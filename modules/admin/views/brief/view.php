@@ -110,7 +110,6 @@ $typeBadgeColors = [
             <div class="card">
                 <div class="card-header d-flex justify-content-between align-items-center">
                     <h5 class="mb-0">Вопросы (<?= count($brief->briefQuestions) ?>)</h5>
-                    <?= Html::a('Редактировать', ['update', 'id' => $brief->id], ['class' => 'btn btn-sm btn-outline-primary']) ?>
                 </div>
                 <div class="card-body p-0">
                     <?php if (empty($brief->briefQuestions)) : ?>

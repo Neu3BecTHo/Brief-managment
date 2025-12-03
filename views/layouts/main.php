@@ -130,7 +130,9 @@ $this->registerCssFile(Yii::getAlias('@web/css/icons.css'));
                                         <a class="dropdown-item d-flex align-items-center gap-2" 
                                         href="<?= Yii::$app->urlManager->createUrl(['admin/brief/index']) ?>">
                                             <svg width="14" height="14" fill="currentColor">
-                                                <use href="<?= Yii::getAlias('@web/icons/sprite.svg#settings') ?>"></use>
+                                                <use href="
+                                                <?= Yii::getAlias('@web/icons/sprite.svg#settings') ?>"
+                                                ></use>
                                             </svg>
                                             Админ-панель
                                         </a>
