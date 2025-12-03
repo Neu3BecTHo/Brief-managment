@@ -70,10 +70,24 @@ $this->registerJsFile(
                 </div>
             </div>
 
-            <div class="form-group">
-                <?= Html::submitButton('Сохранить', ['class' => 'btn btn-primary btn-lg']) ?>
-                <?= Html::a('Отмена', ['index'], ['class' => 'btn btn-outline-secondary btn-lg']) ?>
-            </div>
+<div class="d-flex gap-3 mt-4">
+
+    <?= Html::submitButton(
+        '<svg width="20" height="20" fill="currentColor" class="me-2"><use href="' . Yii::getAlias('@web/icons/sprite.svg#save') . '"></use></svg>' . 'Сохранить',
+        [
+            'class' => 'btn btn-primary btn-lg d-inline-flex align-items-center px-4'
+        ]
+    ) ?>
+
+    <?= Html::a(
+        '<svg width="20" height="20" fill="currentColor" class="me-2"><use href="' . Yii::getAlias('@web/icons/sprite.svg#cancel') . '"></use></svg>' . 'Отмена',
+        ['index'],
+        [
+            'class' => 'btn btn-outline-danger btn-lg d-inline-flex align-items-center px-4'
+        ]
+    ) ?>
+    
+</div>
         </div>
     </div>
 
@@ -81,7 +95,7 @@ $this->registerJsFile(
 </div>
 
 <!-- Плавающая кнопка добавления вопроса -->
-<button type="button" class="btn btn-success btn-floating" id="add-question-btn" title="Добавить вопрос">
+<button type="button" class="btn btn-create btn-floating" id="add-question-btn" title="Добавить вопрос">
     <svg width="24" height="24" fill="currentColor">
         <use href="<?= Yii::getAlias('@web/icons/sprite.svg#document') ?>"></use>
     </svg>

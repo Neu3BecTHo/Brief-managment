@@ -54,7 +54,7 @@ $this->registerCssFile(Yii::getAlias('@web/css/admin.css'));
                         data-bs-toggle="offcanvas" data-bs-target="#offcanvasSidebar" 
                         aria-controls="offcanvasSidebar">
                     <svg width="24" height="24" fill="currentColor">
-                        <use href="/icons/sprite.svg#menu"></use>
+                        <use href="<?= Yii::getAlias('@web/icons/sprite.svg#menu') ?>"></use>
                     </svg>
                 </button>
             </div>

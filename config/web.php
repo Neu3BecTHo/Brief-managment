@@ -1,5 +1,7 @@
 <?php
 
+use yii\symfonymailer\Mailer;
+
 $params = require __DIR__ . '/params.php';
 $db = require __DIR__ . '/db.php';
 
@@ -38,10 +40,23 @@ $config = [
             'errorAction' => 'main/error',
         ],
         'mailer' => [
-            'class' => \yii\symfonymailer\Mailer::class,
+            'class' => Mailer::class,
             'viewPath' => '@app/mail',
-            // send all mails to a file by default.
-            'useFileTransport' => true,
+            'useFileTransport' => false,
+            'transport' => [
+                'scheme' => 'smtps',
+                'host' => $_ENV['SMTP_HOST'],
+                'username' => $_ENV['SMTP_EMAIL'],
+                'password' => $_ENV['SMTP_PASSWORD'],
+                'port' => $_ENV['SMTP_PORT'],
+                'options' => [
+                    'ssl' => [
+                        'allow_self_signed' => true,
+                        'verify_peer' => false,
+                        'verify_peer_name' => false,
+                    ],
+                ],
+            ],
         ],
         'log' => [
             'traceLevel' => YII_DEBUG ? 3 : 0,
