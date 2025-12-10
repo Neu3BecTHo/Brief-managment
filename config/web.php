@@ -32,6 +32,11 @@ $config = [
         'cache' => [
             'class' => 'yii\caching\FileCache',
         ],
+        'session' => [
+            'class' => 'yii\web\DbSession',
+            'sessionTable' => '{{%session}}',
+            'timeout' => 3600,
+        ],
         'user' => [
             'identityClass' => 'app\models\User',
             'enableAutoLogin' => true,
