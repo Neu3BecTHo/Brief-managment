@@ -39,6 +39,7 @@ $config = [
             'migrationPath' => [
                 '@app/migrations',
                 '@yii/rbac/migrations',
+                '@yii/web/migrations',
             ]
         ]
     ],
