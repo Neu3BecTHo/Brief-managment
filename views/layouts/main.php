@@ -16,7 +16,7 @@ $this->registerMetaTag(['name' => 'viewport', 'content' => 'width=device-width, 
 $this->registerMetaTag(['name' => 'description', 'content' => $this->params['meta_description'] ?? '']);
 $this->registerMetaTag(['name' => 'keywords', 'content' => $this->params['meta_keywords'] ?? '']);
 $this->registerLinkTag(['rel' => 'icon', 'type' => 'image/x-icon', 'href' => Yii::getAlias('@web/favicon.ico')]);
-$this->registerCssFile(Yii::getAlias('@web/css/icons.css'));
+$this->registerCssFile(Yii::getAlias('@web/css/site.css'));
 ?>
 <?php $this->beginPage() ?>
 <!DOCTYPE html>
@@ -68,7 +68,6 @@ $this->registerCssFile(Yii::getAlias('@web/css/icons.css'));
                     </li>
                     
                     <?php if (!Yii::$app->user->isGuest) : ?>
-                        <!-- Меню брифов (только для авторизованных) -->
                         <li class="nav-item dropdown">
                             <a class="nav-link dropdown-toggle d-flex align-items-center gap-1" 
                                href="#" id="briefesDropdown"
@@ -102,7 +101,6 @@ $this->registerCssFile(Yii::getAlias('@web/css/icons.css'));
                     <?php endif; ?>
                     
                     <?php if (Yii::$app->user->isGuest) : ?>
-                        <!-- Меню для гостей -->
                         <li class="nav-item">
                             <a class="nav-link" href="<?= Yii::$app->urlManager->createUrl(['main/login']) ?>">
                                 Вход
@@ -114,7 +112,6 @@ $this->registerCssFile(Yii::getAlias('@web/css/icons.css'));
                             </a>
                         </li>
                     <?php else : ?>
-                        <!-- Меню пользователя (только для авторизованных) -->
                         <li class="nav-item dropdown">
                             <a class="nav-link dropdown-toggle d-flex align-items-center gap-1" 
                                href="#" id="navbarDropdown"

@@ -38,8 +38,8 @@ $this->registerCssFile(Yii::getAlias('@web/css/admin.css'));
         <nav id="sidebar" class="col-md-3 col-lg-2 d-none d-md-block sidebar bg-dark">
             <div class="position-sticky pt-3">
                 <a href="<?= Yii::$app->urlManager->createUrl(['admin/brief/index']) ?>" 
-                   class="d-flex align-items-center mb-3 text-white text-decoration-none px-3">
-                    <span class="fs-4 fw-bold"><?= Html::encode(Yii::$app->name) ?></span>
+                   class="d-flex align-items-center mb-3 text-black text-decoration-none px-3">
+                    <span class="nav-link d-flex align-items-center gap-2"><?= Html::encode(Yii::$app->name) ?></span>
                 </a>
                 <hr class="text-white-50">
                 <?= $this->render('_sidebar_menu') ?>
@@ -49,7 +49,10 @@ $this->registerCssFile(Yii::getAlias('@web/css/admin.css'));
         <main class="col-md-9 ms-sm-auto col-lg-10 px-md-4 bg-light">
             
             <div class="d-md-none d-flex justify-content-between align-items-center pt-3 pb-2 mb-3 border-bottom">
-                <h1 class="h4 mb-0"><?= Html::encode($this->title) ?></h1>
+                <a href="<?= Yii::$app->urlManager->createUrl(['admin/brief/index']) ?>" 
+                   class="d-flex align-items-center mb-3 text-black text-decoration-none px-3">
+                    <span class="nav-link d-flex align-items-center gap-2">Админ-панель</span>
+                </a>
                 <button class="btn btn-outline-dark" type="button" 
                         data-bs-toggle="offcanvas" data-bs-target="#offcanvasSidebar" 
                         aria-controls="offcanvasSidebar">
@@ -60,7 +63,7 @@ $this->registerCssFile(Yii::getAlias('@web/css/admin.css'));
             </div>
 
             <div class="pt-3 pb-2 mb-3 border-bottom d-none d-md-flex justify-content-between align-items-center">
-                <h1 class="h2"><?= Html::encode($this->title) ?></h1>
+                <h1 class="nav-link d-flex align-items-center gap-2"><?= Html::encode($this->title) ?></h1>
                 <div class="btn-toolbar mb-2 mb-md-0">
                      <?= Breadcrumbs::widget(['links' => $this->params['breadcrumbs'] ?? []]) ?>
                 </div>
@@ -80,7 +83,7 @@ $this->registerCssFile(Yii::getAlias('@web/css/admin.css'));
 <div class="offcanvas offcanvas-start bg-dark text-white" tabindex="-1" 
      id="offcanvasSidebar" aria-labelledby="offcanvasSidebarLabel">
     <div class="offcanvas-header">
-        <h5 class="offcanvas-title" id="offcanvasSidebarLabel"><?= Html::encode(Yii::$app->name) ?></h5>
+        <span class="offcanvas-title" id="offcanvasSidebarLabel"><?= Html::encode(Yii::$app->name) ?></span>
         <button type="button" class="btn-close btn-close-white" data-bs-dismiss="offcanvas" aria-label="Закрыть"></button>
     </div>
     <div class="offcanvas-body px-0">

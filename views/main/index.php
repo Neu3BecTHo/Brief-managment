@@ -19,12 +19,12 @@ $this->title = 'Главная';
             <div class="d-flex gap-3 justify-content-center flex-wrap">
                 <?php if (Yii::$app->user->isGuest) : ?>
                     <a href="<?= Yii::$app->urlManager->createUrl(['main/login']) ?>" 
-                       class="btn btn-outline-primary btn-lg">
+                       class="btn btn-primary btn-lg">
                         Войти
                     </a>
                 <?php else : ?>
                     <a href="<?= Yii::$app->urlManager->createUrl(['brief/available']) ?>" 
-                       class="btn btn-outline-primary btn-lg">
+                       class="btn btn-primary btn-lg">
                         Мои брифы
                     </a>
                 <?php endif; ?>

@@ -1,7 +1,3 @@
-/**
- * Конструктор брифов - динамическое управление вопросами
- */
-
 let questionIndex = 0;
 
 // Данные передаются из PHP через window.briefFormData
@@ -9,7 +5,6 @@ const typeFields = window.briefFormData.typeFields || {};
 const typeFieldsCodes = window.briefFormData.typeFieldsCodes || {};
 const existingQuestions = window.briefFormData.existingQuestions || [];
 
-// Инициализация при загрузке страницы
 document.addEventListener('DOMContentLoaded', function() {
     // Загружаем существующие вопросы (при редактировании)
     if (existingQuestions.length > 0) {
@@ -17,16 +12,65 @@ document.addEventListener('DOMContentLoaded', function() {
         document.getElementById('no-questions-msg').style.display = 'none';
     }
 
-    // Обработчик кнопки "Добавить вопрос"
     document.getElementById('add-question-btn').addEventListener('click', function() {
         addQuestion();
         document.getElementById('no-questions-msg').style.display = 'none';
     });
+
+    var container = document.getElementById('questions-container');
+    var saveBtn = document.getElementById('save-brief-btn');
+    var msg = document.getElementById('no-questions-msg');
+
+    if (!container || !saveBtn) return;
+
+    function toggleSaveButton() {
+        var count = container.children.length;
+
+        if (count > 0) {
+            saveBtn.removeAttribute('disabled');
+            if (msg) msg.style.display = 'none';
+        } else {
+            saveBtn.setAttribute('disabled', 'disabled');
+            if (msg) msg.style.display = 'block';
+        }
+    }
+
+    var observer = new MutationObserver(function(mutations) {
+        toggleSaveButton();
+    });
+
+    observer.observe(container, { childList: true });
+
+    setTimeout(toggleSaveButton, 100);
 });
 
-/**
- * Добавить новый вопрос
- */
+function checkQuestionsCount() {
+    var count = $('#questions-container').children().length;
+    var btn = $('#save-brief-btn');
+    var msg = $('#no-questions-msg');
+
+    if (count > 0) {
+        btn.prop('disabled', false);
+        msg.hide();
+    } else {
+        btn.prop('disabled', true);
+        msg.show();
+    }
+}
+
+var observer = new MutationObserver(function(mutations) {
+    checkQuestionsCount();
+});
+
+var container = document.getElementById('questions-container');
+if (container) {
+    observer.observe(container, { childList: true });
+}
+
+$(document).ready(function() {
+    setTimeout(checkQuestionsCount, 100);
+});
+
 function addQuestion(data = null) {
     const container = document.getElementById('questions-container');
     const currentCount = container.querySelectorAll('.question-item').length; // Считаем реальное количество
@@ -37,7 +81,6 @@ function addQuestion(data = null) {
     const isRequired = data ? data.is_required : false;
     const options = data ? data.options : '';
     
-    // Генерируем HTML для нового вопроса
     const html = `
         <div class="card mb-3 question-item" data-index="${index}">
             <div class="card-body">
@@ -100,23 +143,16 @@ function addQuestion(data = null) {
     toggleOptionsVisibility(newItem, typeFieldId);
 }
 
-/**
- * Удалить вопрос
- */
 function removeQuestion(element) {
     element.remove();
     updateQuestionNumbers();
     
-    // Показываем сообщение, если вопросов не осталось
     const container = document.getElementById('questions-container');
     if (container.children.length === 0) {
         document.getElementById('no-questions-msg').style.display = 'block';
     }
 }
 
-/**
- * Обновить нумерацию вопросов
- */
 function updateQuestionNumbers() {
     const items = document.querySelectorAll('.question-item');
     items.forEach((item, index) => {
@@ -129,7 +165,6 @@ function toggleOptionsVisibility(questionElement, typeFieldId) {
     const typeCode = typeFieldsCodes[typeId] ? typeFieldsCodes[typeId].toLowerCase() : '';
     const optionsWrapper = questionElement.querySelector('.options-wrapper');
     
-    // Типы, которым НЕ нужны варианты
     const noOptionsNeeded = ['text', 'textarea', 'number', 'date', 'email', 'phone', 'color', 'comment'];
     
     if (noOptionsNeeded.includes(typeCode)) {
@@ -139,9 +174,6 @@ function toggleOptionsVisibility(questionElement, typeFieldId) {
     }
 }
 
-/**
- * Генерация опций для select типов полей
- */
 function generateTypeFieldOptions(selectedId) {
     let html = '';
     for (const [id, title] of Object.entries(typeFields)) {
@@ -151,9 +183,6 @@ function generateTypeFieldOptions(selectedId) {
     return html;
 }
 
-/**
- * Экранирование HTML (защита от XSS)
- */
 function escapeHtml(text) {
     const map = {
         '&': '&amp;',

@@ -1,17 +1,12 @@
-/* Минималистичный дизайн с холодной палитрой */
-
-/* Шрифты */
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&display=swap');
 
 :root {
-    /* Холодная цветовая палитра */
     --primary-blue: #2563eb;
     --primary-dark: #1e40af;
     --primary-light: #3b82f6;
     --secondary-blue: #64748b;
     --accent-blue: #0ea5e9;
     
-    /* Нейтральные цвета */
     --white: #ffffff;
     --gray-50: #f8fafc;
     --gray-100: #f1f5f9;
@@ -24,14 +19,12 @@
     --gray-800: #1e293b;
     --gray-900: #0f172a;
     
-    /* Тени */
     --shadow-sm: 0 1px 2px 0 rgb(15 23 42 / 0.05);
     --shadow-md: 0 4px 6px -1px rgb(15 23 42 / 0.1);
     --shadow-lg: 0 10px 15px -3px rgb(15 23 42 / 0.1);
     --shadow-xl: 0 20px 25px -5px rgb(15 23 42 / 0.1);
     --shadow-floating: 0 25px 50px -12px rgb(37 99 235 / 0.15);
     
-    /* Переходы */
     --transition-fast: 150ms ease;
     --transition-normal: 300ms ease;
     --transition-slow: 500ms ease;
@@ -44,22 +37,17 @@
 }
 
 body {
-    font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
     background: linear-gradient(135deg, var(--gray-50) 0%, var(--white) 100%);
     color: var(--gray-800);
-    line-height: 1.6;
     min-height: 100vh;
     display: grid;
     grid-template-rows: auto 1fr auto;
 }
 
-/* Main */
-
 main {
     padding: 1rem;
 }
 
-/* Dropdown меню */
 .dropdown-menu {
     border: 1px solid var(--gray-200);
     border-radius: 0.75rem;
@@ -103,7 +91,6 @@ main {
     vertical-align: middle;
 }
 
-/* Убираем моргание dropdown */
 .dropdown-menu {
     display: none;
 }
@@ -112,11 +99,9 @@ main {
     display: block;
 }
 
-/* Навигационная панель */
 .navbar {
     background: rgba(255, 255, 255, 0.95) !important;
     backdrop-filter: blur(20px);
-    -webkit-backdrop-filter: blur(20px);
     border-bottom: 1px solid var(--gray-200);
     box-shadow: var(--shadow-sm);
     padding: 1rem 0;
@@ -154,7 +139,6 @@ main {
     background: rgba(37, 99, 235, 0.1);
 }
 
-/* Парящие элементы */
 .floating-element {
     background: var(--white);
     border-radius: 1rem;
@@ -168,7 +152,6 @@ main {
     box-shadow: var(--shadow-floating);
 }
 
-/* Кнопки */
 .btn-primary,
 .btn-success,
 .btn-danger {
@@ -279,26 +262,21 @@ main {
     filter: brightness(.8);
 }
 
-/* Поля ввода */
 .form-control {
     border: 2px solid var(--gray-200);
     border-radius: 0.75rem;
     padding: 0.75rem 1rem;
-    transition: all var(--transition-fast);
-    background: var(--white);
 }
 
 .form-control:focus {
     border-color: var(--primary-blue);
     box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.1);
-    outline: none;
 }
 
 .form-control::placeholder {
     color: var(--gray-400);
 }
 
-/* Формы */
 .form-label {
     color: var(--gray-700);
     font-weight: 500;
@@ -343,7 +321,6 @@ main {
     flex-wrap: wrap;
 }
 
-/* Сетка */
 .d-grid {
     display: grid !important;
 }
@@ -356,7 +333,6 @@ main {
     justify-content: center !important;
 }
 
-/* Отступы */
 .p-4 {
     padding: 1.5rem !important;
 }
@@ -385,12 +361,10 @@ main {
     padding-top: 1.5rem !important;
 }
 
-/* Границы */
 .border-top {
     border-top: 1px solid var(--gray-200) !important;
 }
 
-/* Текст */
 .text-center {
     text-align: center !important;
 }
@@ -399,12 +373,10 @@ main {
     font-size: 0.875rem !important;
 }
 
-/* Кнопка в сетке */
 .d-grid .btn {
     width: 100%;
 }
 
-/* Карточки */
 .card {
     border: none;
     border-radius: 1rem;
@@ -438,7 +410,6 @@ main {
     max-width: 1200px;
 }
 
-/* Подвал */
 footer {
     background: var(--gray-900) !important;
     color: var(--gray-400) !important;
@@ -455,7 +426,6 @@ footer a:hover {
     color: var(--primary-light) !important;
 }
 
-/* Хлебные крошки */
 .breadcrumb {
     background: transparent;
     padding: 1rem 0;
@@ -480,7 +450,6 @@ footer a:hover {
     color: var(--primary-dark);
 }
 
-/* Уведомления */
 .alert {
     border: none;
     border-radius: 0.75rem;
@@ -513,7 +482,6 @@ footer a:hover {
     border-left: 4px solid #ef4444;
 }
 
-/* Иконки */
 .icon {
     width: 48px;
     height: 48px;
@@ -537,17 +505,14 @@ footer a:hover {
     height: 40px;
 }
 
-/* Максимальная ширина */
 .max-w-2xl {
     max-width: 700px;
 }
 
-/* Отступы */
 .gap-3 {
     gap: 1rem;
 }
 
-/* Текстовые классы */
 .text-primary {
     color: var(--primary-blue) !important;
 }
@@ -564,7 +529,6 @@ footer a:hover {
     font-weight: 700 !important;
 }
 
-/* Размеры текста */
 .display-6 {
     font-size: 2.5rem;
     font-weight: 300;
@@ -577,7 +541,6 @@ footer a:hover {
     }
 }
 
-/* Анимации */
 @keyframes fadeIn {
     from {
         opacity: 0;
@@ -593,7 +556,6 @@ footer a:hover {
     animation: fadeIn var(--transition-normal) ease-out;
 }
 
-/* Адаптивность */
 @media (max-width: 768px) {
     .navbar {
         padding: 0.75rem 0;
@@ -611,7 +573,6 @@ footer a:hover {
         padding: 0 1rem;
     }
     
-    /* Форма регистрации на мобильных */
     .row .col-md-6 {
         margin-bottom: 1rem;
     }
@@ -619,9 +580,75 @@ footer a:hover {
     .display-6 {
         font-size: 2rem;
     }
+
+    .mobile-card-view thead {
+        display: none;
+    }
+
+    .mobile-card-view tbody, 
+    .mobile-card-view tr, 
+    .mobile-card-view td {
+        display: block;
+        width: 100%;
+    }
+
+    .mobile-card-view tr {
+        margin-bottom: 0;
+        border-bottom: 8px solid #f8fafc;
+        padding: 1.25rem 1rem;
+        position: relative;
+    }
+
+    .mobile-card-view td {
+        border: none;
+        padding: 0;
+        margin-bottom: 0.5rem;
+    }
+
+    .mobile-card-view td[data-label="#"] {
+        display: none;
+    }
+
+    .question-text {
+        font-size: 1.1rem;
+        color: #1e293b;
+        margin-bottom: 0.25rem;
+    }
+    
+    .mobile-badge {
+        font-size: 0.7rem !important;
+        padding: 0.25em 0.5em;
+    }
+
+    .mobile-card-view td[data-label="Тип"] {
+        margin-bottom: 1rem;
+    }
+
+    .mobile-card-view td[data-label="Ответ"] {
+        margin-bottom: 0;
+    }
+    
+    .mobile-card-view td[data-label="Ответ"]::before {
+        content: "Ваш ответ";
+        display: block;
+        font-size: 0.75rem;
+        text-transform: uppercase;
+        color: #94a3b8;
+        font-weight: 700;
+        margin-bottom: 0.5rem;
+    }
+
+    .answer-content {
+        background: #f1f5f9;
+        padding: 0.75rem;
+        border-radius: 0.5rem;
+        border: 1px solid #e2e8f0;
+        word-break: break-word;
+    }
+
+    .small-mobile { font-size: 0.9rem; }
 }
 
-/* Тени для парящих элементов */
 .floating-card {
     background: var(--white);
     border-radius: 1rem;
