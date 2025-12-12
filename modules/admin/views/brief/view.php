@@ -34,6 +34,7 @@ $typeIcons = [
     'email' => 'document',
     'phone' => 'document',
     'color' => 'palette',
+    'comment' => 'document',
 ];
 
 $typeBadgeColors = [
@@ -49,84 +50,114 @@ $typeBadgeColors = [
     'color' => 'success',
     'comment' => 'secondary',
 ];
+
 ?>
 
-<div class="brief-view">
-    <div class="d-flex justify-content-between align-items-center mb-4">
-        <h1><?= Html::encode($this->title) ?></h1>
+<div class="brief-view d-flex flex-column gap-3">
 
-        <div class="d-flex">
+    <div class="d-flex justify-content-between align-items-center mb-2 flex-wrap gap-2">
+        <div class="h2-center">
+            <h1 class="h2 mb-1 fw-bold text-gray-800"><?= Html::encode($this->title) ?></h1>
+        </div>
+
+        <div class="d-flex flex-wrap gap-2">
             <?= Html::a(
-                '<svg width="14" height="14" fill="currentColor"><use href="' . Yii::getAlias('@web/icons/sprite.svg#pencil') . '"></use></svg> Редактировать',
+                '<svg width="20" height="20" class="me-1" fill="currentColor">
+                    <use href="' . Yii::getAlias('@web/icons/sprite.svg#pencil') . '"></use>
+                 </svg> Редактировать',
                 ['update', 'id' => $brief->id],
-                ['class' => 'btn btn-outline-primary me-1']
+                ['class' => 'btn btn-primary d-flex align-items-center px-3 py-2 shadow-sm btn-sm']
             ) ?>
             <?= Html::a(
-                '<svg width="14" height="14" fill="currentColor"><use href="' . Yii::getAlias('@web/icons/sprite.svg#trash') . '"></use></svg> Удалить',
+                '<svg width="20" height="20" class="me-1" fill="currentColor">
+                    <use href="' . Yii::getAlias('@web/icons/sprite.svg#trash') . '"></use>
+                 </svg> Удалить',
                 ['delete', 'id' => $brief->id],
                 [
-                'class' => 'btn btn-outline-danger',
-                'data' => [
-                    'confirm' => 'Вы уверены, что хотите удалить этот элемент?',
-                    'method' => 'post',
-                ],
+                    'class' => 'btn btn-danger d-flex align-items-center px-3 py-2 shadow-sm btn-sm',
+                    'data' => [
+                        'confirm' => 'Вы уверены, что хотите удалить этот элемент?',
+                        'method' => 'post',
+                    ],
                 ]
             ) ?>
         </div>
     </div>
 
-    <div class="row">
-        <div class="col-md-8">
-            <div class="card mb-3">
-                <div class="card-header">
-                    <h5 class="mb-0">Информация о брифе</h5>
+    <div class="row flex-column g-3">
+        <div class="col-12">
+            <div class="card border-0 shadow-sm rounded-4 h-100">
+                <div class="card-header bg-light border-0">
+                    <h5 class="mb-0 small text-uppercase text-muted">
+                        <svg width="16" height="16" class="me-1" fill="currentColor">
+                            <use href="<?= Yii::getAlias('@web/icons/sprite.svg#document') ?>"></use>
+                        </svg>
+                        Информация о брифе
+                    </h5>
                 </div>
                 <div class="card-body">
-                    <table class="table table-borderless">
-                        <tr>
-                            <th style="width: 200px;">Название:</th>
-                            <td><?= Html::encode($brief->title) ?></td>
-                        </tr>
-                        <tr>
-                            <th>Описание:</th>
-                            <td><?= Html::encode($brief->description) ?></td>
-                        </tr>
-                        <tr>
-                            <th>Статус:</th>
-                            <td><span class="badge bg-primary"><?= Html::encode($brief->status->title) ?></span></td>
-                        </tr>
-                        <tr>
-                            <th>Создатель:</th>
-                            <td><?= Html::encode($brief->user->username) ?></td>
-                        </tr>
-                        <tr>
-                            <th>Создан:</th>
-                            <td><?= Yii::$app->formatter->asDatetime($brief->created_at) ?></td>
-                        </tr>
-                        <tr>
-                            <th>Обновлён:</th>
-                            <td><?= Yii::$app->formatter->asDatetime($brief->updated_at) ?></td>
-                        </tr>
-                    </table>
+                    <dl class="mb-0 brief-meta">
+                        <div class="brief-meta-row">
+                            <dt>Название</dt>
+                            <dd><?= Html::encode($brief->title) ?></dd>
+                        </div>
+                        <?php if ($brief->description) : ?>
+                            <div class="brief-meta-row">
+                                <dt>Описание</dt>
+                                <dd class="text-muted"><?= Html::encode($brief->description) ?></dd>
+                            </div>
+                        <?php endif; ?>
+                        <div class="brief-meta-row">
+                            <dt>Статус</dt>
+                            <dd>
+                                <span class="badge bg-primary rounded-pill px-3 py-2">
+                                    <?= Html::encode($brief->status->title) ?>
+                                </span>
+                            </dd>
+                        </div>
+                        <div class="brief-meta-row">
+                            <dt>Создатель</dt>
+                            <dd><?= Html::encode($brief->user->username) ?></dd>
+                        </div>
+                        <div class="brief-meta-row">
+                            <dt>Создан</dt>
+                            <dd><?= Yii::$app->formatter->asDatetime($brief->created_at) ?></dd>
+                        </div>
+                        <div class="brief-meta-row">
+                            <dt>Обновлён</dt>
+                            <dd><?= Yii::$app->formatter->asDatetime($brief->updated_at) ?></dd>
+                        </div>
+                        <div class="brief-meta-row">
+                            <dt>Вопросов</dt>
+                            <dd><?= count($brief->briefQuestions) ?></dd>
+                        </div>
+                    </dl>
                 </div>
             </div>
+        </div>
 
-            <div class="card">
-                <div class="card-header d-flex justify-content-between align-items-center">
-                    <h5 class="mb-0">Вопросы (<?= count($brief->briefQuestions) ?>)</h5>
+        <div class="col-12">
+            <div class="card border-0 shadow-sm rounded-4">
+                <div class="card-header d-flex justify-content-between align-items-center bg-light border-0">
+                    <h5 class="mb-0 small text-uppercase text-muted">
+                        <svg width="16" height="16" class="me-1" fill="currentColor">
+                            <use href="<?= Yii::getAlias('@web/icons/sprite.svg#brief') ?>"></use>
+                        </svg>
+                        Вопросы (<?= count($brief->briefQuestions) ?>)
+                    </h5>
                 </div>
                 <div class="card-body p-0">
                     <?php if (empty($brief->briefQuestions)) : ?>
                         <p class="text-muted p-4 mb-0">Вопросов пока нет.</p>
                     <?php else : ?>
-                        <div class="table-responsive">
-                            <table class="table table-hover mb-0">
-                                <thead>
+                        <div class="table-responsive admin-brief-view-questions">
+                            <table class="table table-hover mb-0 align-middle">
+                                <thead class="bg-light text-muted small text-uppercase">
                                     <tr>
-                                        <th style="width: 50px;">#</th>
+                                        <th>#</th>
                                         <th>Вопрос</th>
-                                        <th style="width: 180px;">Тип поля</th>
-                                        <th style="width: 140px;">Статус</th>
+                                        <th>Тип поля</th>
+                                        <th>Статус</th>
                                         <th>Варианты</th>
                                     </tr>
                                 </thead>
@@ -139,26 +170,35 @@ $typeBadgeColors = [
                                         $badgeColor = $typeBadgeColors[$typeCode] ?? 'secondary';
                                         ?>
                                         <tr>
-                                            <td class="text-center text-muted fw-bold"><?= $index + 1 ?></td>
-                                            <td>
-                                                <strong><?= Html::encode($question->question) ?></strong>
+                                            <td data-label="#">
+                                                <?= $index + 1 ?>
                                             </td>
-                                            <td>
+                                            <td data-label="Вопрос">
+                                                <div class="fw-semibold mb-1">
+                                                    <?= Html::encode($question->question) ?>
+                                                </div>
+                                                <?php if (!empty($question->description)) : ?>
+                                                    <div class="text-muted small">
+                                                        <?= Html::encode($question->description) ?>
+                                                    </div>
+                                                <?php endif; ?>
+                                            </td>
+                                            <td data-label="Тип поля">
                                                 <span class="badge bg-<?= $badgeColor ?> d-inline-flex align-items-center gap-1">
                                                     <svg width="12" height="12" fill="currentColor">
                                                         <use href="/icons/sprite.svg#<?= $icon ?>"></use>
                                                     </svg>
-                                                    <?= $typeRu ?>
+                                                    <?= Html::encode($typeRu) ?>
                                                 </span>
                                             </td>
-                                            <td>
+                                            <td data-label="Статус">
                                                 <?php if ($question->is_required) : ?>
                                                     <span class="badge bg-danger">Обязательное</span>
                                                 <?php else : ?>
-                                                    <span class="badge bg-light text-dark">Необязательное</span>
+                                                    <span class="badge bg-light text-muted">Необязательное</span>
                                                 <?php endif; ?>
                                             </td>
-                                            <td>
+                                            <td data-label="Варианты">
                                                 <?php if ($question->options) : ?>
                                                     <?php
                                                     $options = $question->getOptionsArray();

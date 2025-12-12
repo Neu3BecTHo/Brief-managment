@@ -46,7 +46,7 @@ $this->registerJsFile(
     <?php $form = ActiveForm::begin(['id' => 'brief-form']); ?>
 
     <div class="row">
-        <div class="col-md-8">
+        <div>
             <div class="card mb-4">
                 <div class="card-header">
                     <h5 class="mb-0">Основная информация</h5>
@@ -69,25 +69,30 @@ $this->registerJsFile(
                     </p>
                 </div>
             </div>
+            <div class="d-flex flex-column gap-3 mt-4">
 
-<div class="d-flex gap-3 mt-4">
+                <?php
+                $isDisabled = $brief->isNewRecord && empty($existingQuestions);
+                ?>
 
-    <?= Html::submitButton(
-        '<svg width="20" height="20" fill="currentColor" class="me-2"><use href="' . Yii::getAlias('@web/icons/sprite.svg#save') . '"></use></svg>' . 'Сохранить',
-        [
-            'class' => 'btn btn-primary btn-lg d-inline-flex align-items-center px-4'
-        ]
-    ) ?>
+                <?= Html::submitButton(
+                    '<svg width="20" height="20" fill="currentColor" class="me-2"><use href="' . Yii::getAlias('@web/icons/sprite.svg#save') . '"></use></svg>' . 'Сохранить',
+                    [
+                        'class' => 'btn btn-primary btn-lg d-inline-flex align-items-center justify-content-center px-4',
+                        'id' => 'save-brief-btn',
+                        'disabled' => $isDisabled
+                    ]
+                ) ?>
 
-    <?= Html::a(
-        '<svg width="20" height="20" fill="currentColor" class="me-2"><use href="' . Yii::getAlias('@web/icons/sprite.svg#cancel') . '"></use></svg>' . 'Отмена',
-        ['index'],
-        [
-            'class' => 'btn btn-outline-danger btn-lg d-inline-flex align-items-center px-4'
-        ]
-    ) ?>
-    
-</div>
+                <?= Html::a(
+                    '<svg width="20" height="20" fill="currentColor" class="me-2"><use href="' . Yii::getAlias('@web/icons/sprite.svg#cancel') . '"></use></svg>' . 'Отмена',
+                    ['index'],
+                    [
+                        'class' => 'btn btn-outline-danger btn-lg d-inline-flex align-items-center justify-content-center px-4'
+                    ]
+                ) ?>
+                
+            </div>
         </div>
     </div>
 

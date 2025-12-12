@@ -15,9 +15,6 @@ use yii\helpers\Json;
 
 class BriefController extends Controller
 {
-    /**
-     * Список всех брифов
-     */
     public function actionIndex()
     {
         $briefs = Briefs::find()
@@ -29,10 +26,6 @@ class BriefController extends Controller
             'briefs' => $briefs,
         ]);
     }
-
-    /**
-     * Просмотр брифа
-     */
     public function actionView($id)
     {
         $brief = $this->findModel($id);
@@ -42,9 +35,6 @@ class BriefController extends Controller
         ]);
     }
 
-    /**
-     * Создание нового брифа
-     */
     public function actionCreate()
     {
         $brief = new Briefs();
@@ -75,9 +65,6 @@ class BriefController extends Controller
         ]);
     }
 
-    /**
-     * Редактирование брифа
-     */
     public function actionUpdate($id)
     {
         $brief = $this->findModel($id);
@@ -85,14 +72,12 @@ class BriefController extends Controller
         if ($brief->load(Yii::$app->request->post())) {
             $transaction = Yii::$app->db->beginTransaction();
             try {
-                // Явно обновляем статус, заголовок и описание через QueryBuilder
                 Yii::$app->db->createCommand()->update('{{%briefs}}', [
                     'status_id' => (int)$brief->status_id,
                     'title' => $brief->title,
                     'description' => $brief->description,
                 ], ['id' => $brief->id])->execute();
 
-                // Дальше работаем с вопросами
                 BriefQuestions::deleteAll(['brief_id' => $brief->id]);
 
                 $questions = Yii::$app->request->post('questions', []);
@@ -114,9 +99,6 @@ class BriefController extends Controller
         ]);
     }
 
-    /**
-     * Удаление брифа
-     */
     public function actionDelete($id)
     {
         $this->findModel($id)->delete();
@@ -125,21 +107,16 @@ class BriefController extends Controller
         return $this->redirect(['index']);
     }
 
-    /**
-     * Список ответов на бриф
-     */
     public function actionResponses($id)
     {
         $brief = $this->findModel($id);
 
-        // Получение всех ответов на вопросы этого брифа
         $answers = BriefAnswers::find()
             ->joinWith(['briefQuestion', 'user'])
             ->where(['{{%brief_questions}}.brief_id' => $brief->id])
             ->orderBy(['{{%brief_answers}}.created_at' => SORT_DESC])
             ->all();
 
-        // Группировка по пользователям
         $userAnswers = [];
         foreach ($answers as $answer) {
             $userId = $answer->user_id;
@@ -159,9 +136,6 @@ class BriefController extends Controller
         ]);
     }
 
-    /**
-     * Детальный просмотр ответов конкретного пользователя на бриф
-     */
     public function actionResponseView($id, $user_id)
     {
         $brief = $this->findModel($id);
@@ -171,7 +145,6 @@ class BriefController extends Controller
             throw new NotFoundHttpException('Пользователь не найден');
         }
 
-        // Ищем ответы этого пользователя на этот бриф
         $answers = BriefAnswers::find()
             ->joinWith('briefQuestion')
             ->where([
@@ -191,9 +164,6 @@ class BriefController extends Controller
         ]);
     }
 
-    /**
-     * Сохранение вопросов
-     */
     protected function saveQuestions($briefId, $questions)
     {
         if (empty($questions)) {
@@ -201,7 +171,6 @@ class BriefController extends Controller
         }
 
         foreach ($questions as $index => $questionData) {
-            // Проверяем, что данные есть
             if (empty($questionData['question']) || empty($questionData['type_field_id'])) {
                 continue;
             }
@@ -225,9 +194,6 @@ class BriefController extends Controller
         }
     }
 
-    /**
-     * Отправка PDF на email
-     */
     public function actionSendPdf($id, $response_user_id = null)
     {
         $brief = $this->findModel($id);
@@ -277,9 +243,6 @@ class BriefController extends Controller
         return $this->redirect($request->referrer);
     }
 
-    /**
-     * Поиск модели по ID
-     */
     protected function findModel($id)
     {
         if (($model = Briefs::findOne($id)) !== null) {

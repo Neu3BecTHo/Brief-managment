@@ -97,37 +97,47 @@ class BriefController extends Controller
         ]);
     }
 
-    /**
-     * Мои заполненные брифы
-     */
     public function actionCompleted()
     {
         $userId = Yii::$app->user->id;
 
-        $answers = BriefAnswers::find()
-            ->where(['user_id' => $userId])
-            ->with(['briefQuestion.brief'])
-            ->orderBy(['created_at' => SORT_DESC])
+        $briefs = Briefs::find()
+            ->innerJoin('{{%brief_questions}} q', 'q.brief_id = {{%briefs}}.id')
+            ->innerJoin('{{%brief_answers}} a', 'a.brief_question_id = q.id')
+            ->where(['a.user_id' => $userId])
+            ->groupBy('{{%briefs}}.id')
+            ->orderBy(['{{%briefs}}.created_at' => SORT_DESC])
             ->all();
 
-        $items = [];
-        foreach ($answers as $answer) {
-            $brief = $answer->briefQuestion->brief ?? null;
-            if (!$brief) {
-                continue;
-            }
-            $items[$brief->id]['brief'] = $brief;
-            $items[$brief->id]['answers'][] = $answer;
+        return $this->render('completed', [
+            'briefs' => $briefs,
+        ]);
+    }
+    public function actionView($id)
+    {
+        $brief = $this->findModel($id);
+        $userId = Yii::$app->user->id;
+
+        $answers = BriefAnswers::find()
+            ->alias('a')
+            ->joinWith(['briefQuestion q'])
+            ->where([
+                'q.brief_id' => $brief->id,
+                'a.user_id' => $userId
+            ])
+            ->all();
+
+        if (empty($answers)) {
+            Yii::$app->session->setFlash('warning', 'Вы еще не заполняли этот бриф.');
+            return $this->redirect(['available']);
         }
 
-        return $this->render('completed', [
-            'items' => $items,
+        return $this->render('view', [
+            'brief' => $brief,
+            'answers' => $answers,
         ]);
     }
 
-    /**
-     * Поиск модели по ID
-     */
     protected function findModel($id)
     {
         if (($model = Briefs::findOne($id)) !== null) {
