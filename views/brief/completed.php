@@ -16,7 +16,7 @@ $this->params['breadcrumbs'][] = $this->title;
         <p class="text-muted lead">История ваших ответов и проектов</p>
     </div>
 
-    <?php if (empty($briefs)): ?>
+    <?php if (empty($briefs)) : ?>
         <div class="alert alert-info text-center shadow-sm border-0" role="alert">
             <div class="mb-3">
                 <i class="bi bi-info-circle" style="font-size: 2rem;"></i>
@@ -28,10 +28,9 @@ $this->params['breadcrumbs'][] = $this->title;
                 <?= Html::a('Перейти к доступным брифам', ['available'], ['class' => 'btn btn-primary']) ?>
             </p>
         </div>
-    <?php else: ?>
-        
+    <?php else : ?>
         <div class="row g-4">
-            <?php foreach ($briefs as $brief): ?>
+            <?php foreach ($briefs as $brief) : ?>
                 <div class="col-md-6 col-lg-4">
                     <div class="card floating-card h-100">
                         <div class="card-body d-flex flex-column">

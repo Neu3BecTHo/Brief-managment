@@ -242,7 +242,7 @@ class BriefController extends Controller
 
         return $this->redirect($request->referrer);
     }
-    
+
     protected function findModel($id)
     {
         if (($model = Briefs::findOne($id)) !== null) {

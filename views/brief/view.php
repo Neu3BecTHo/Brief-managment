@@ -70,7 +70,9 @@ $typeBadgeColors = [
                             <td data-label="Вопрос">
                                 <div class="fw-bold mb-1 question-text"><?= Html::encode($question->question) ?></div>
                                 <?php if ($question->is_required) : ?>
-                                    <span class="badge bg-danger bg-opacity-10 text-danger mobile-badge">Обязательный</span>
+                                    <span 
+                                    class="badge bg-danger bg-opacity-10 text-danger mobile-badge"
+                                    >Обязательный</span>
                                 <?php endif; ?>
                             </td>
                             
@@ -81,7 +83,14 @@ $typeBadgeColors = [
                             <td data-label="Ответ" class="answer-cell">
                                 <?php if ($typeCode === 'color') : ?>
                                     <div class="d-flex align-items-center gap-2 answer-content">
-                                        <span class="color-dot" style="background: <?= Html::encode($answer->answer) ?>; width: 24px; height: 24px; border-radius: 4px; border: 1px solid #ddd;"></span>
+                                        <span class="color-dot" 
+                                        style="
+                                        background: <?= Html::encode($answer->answer) ?>; 
+                                        width: 24px; 
+                                        height: 24px; 
+                                        border-radius: 4px; 
+                                        border: 1px solid #ddd;
+                                        "></span>
                                         <code><?= Html::encode($answer->answer) ?></code>
                                     </div>
                                 <?php else : ?>

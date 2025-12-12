@@ -31,7 +31,6 @@ $this->params['breadcrumbs'][] = $this->title;
             </div>
         </div>
     <?php else : ?>
-        
         <div class="card border-0 shadow-sm rounded-4 overflow-hidden bg-white w-100">
             <div class="table-responsive admin-table-mobile-cards">
                 <table class="table table-hover align-middle mb-0">
@@ -52,13 +51,13 @@ $this->params['breadcrumbs'][] = $this->title;
 
                                 <td data-label="Статус">
                                     <?php
-                                    $statusClass = match($brief->status_id) {
+                                    $statusClass = match ($brief->status_id) {
                                         1 => 'bg-secondary',
                                         2 => 'bg-success',
                                         3 => 'bg-warning text-dark',
                                         default => 'bg-primary'
                                     };
-                                    ?>
+    ?>
                                     <span class="badge <?= $statusClass ?> rounded-pill px-3 py-2 fw-normal d-inline-flex align-items-center gap-1">
                                         <?= Html::encode($brief->status->title) ?>
                                     </span>

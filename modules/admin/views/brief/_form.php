@@ -71,8 +71,8 @@ $this->registerJsFile(
             </div>
             <div class="d-flex flex-column gap-3 mt-4">
 
-                <?php 
-                $isDisabled = $brief->isNewRecord && empty($existingQuestions); 
+                <?php
+                $isDisabled = $brief->isNewRecord && empty($existingQuestions);
                 ?>
 
                 <?= Html::submitButton(

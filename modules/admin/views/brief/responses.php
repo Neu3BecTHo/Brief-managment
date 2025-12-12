@@ -44,7 +44,6 @@ $this->params['breadcrumbs'][] = 'Ответы';
             </div>
         </div>
     <?php else : ?>
-
         <div class="card border-0 shadow-sm rounded-4 overflow-hidden bg-white w-100">
             <div class="table-responsive admin-table-mobile-cards">
                 <table class="table table-hover align-middle mb-0">
@@ -59,9 +58,9 @@ $this->params['breadcrumbs'][] = 'Ответы';
                     </thead>
                     <tbody class="border-top-0">
                         <?php foreach ($userAnswers as $userId => $data) : ?>
-                        <?php $user = $data['user']; ?>
-                        <?php $answersCount = count($data['answers']); ?>
-                        <?php $createdAt = $data['created_at']; ?>
+                            <?php $user = $data['user']; ?>
+                            <?php $answersCount = count($data['answers']); ?>
+                            <?php $createdAt = $data['created_at']; ?>
                             <tr class="brief-row">
                                 <td class="ps-4 text-muted fw-bold small" data-label="ID">
                                     #<?= $userId ?>

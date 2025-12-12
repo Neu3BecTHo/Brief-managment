@@ -122,7 +122,7 @@ class BriefController extends Controller
             ->alias('a')
             ->joinWith(['briefQuestion q'])
             ->where([
-                'q.brief_id' => $brief->id, 
+                'q.brief_id' => $brief->id,
                 'a.user_id' => $userId
             ])
             ->all();
